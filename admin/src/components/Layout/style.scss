@@ -1,0 +1,12 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixin.scss";
+
+.layout-container {
+  @include grid($sidebar-width 1fr);
+}
+
+.content {
+  grid-column: 2 / -1;
+  padding: 2rem;
+  background-color: $color-grey-light-2;
+}
