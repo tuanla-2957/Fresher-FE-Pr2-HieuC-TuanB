@@ -6,12 +6,12 @@ export const navLefts = [
     },
     {
         id: 2,
-        src: './',
+        src: './about-us',
         name: 'ABOUT US',
     },
     {
         id: 3,
-        src: './',
+        src: './sale',
         name: 'SALE',
     }
 ]
@@ -19,17 +19,17 @@ export const navLefts = [
 export const navRights = [
     {
         id: 1,
-        src: './',
+        src: './product',
         name: 'PRODUCT',
     },
     {
         id: 2,
-        src: './',
+        src: './post',
         name: 'NEW',
     },
     {
         id: 3,
-        src: './',
+        src: './blog',
         name: 'BLOG',
     }
 ]

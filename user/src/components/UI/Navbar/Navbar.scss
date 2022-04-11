@@ -19,8 +19,16 @@
     background-color: $other-color;
   }
 
+  &__item--active {
+    color: $other-color !important;
+  }
+
   &__item:hover::after {
     height: 1px;
     animation: lineExtend ease-in 0.2s;
   }
+}
+
+.active {
+  color: $other-color !important;
 }

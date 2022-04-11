@@ -1,0 +1,67 @@
+@import "../../assets/scss/variable";
+@import "../../assets/scss/mixins/mixins";
+
+.product {
+  width: 100%;
+  position: relative;
+  padding: 10px 0;
+
+  .card-wrapper {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+
+  .card {
+    .card-body {
+      @include flex($justify: center, $align: center, $direction: column);
+      padding: 20px;
+    }
+
+    &__row {
+      width: 100%;
+      @include flex($justify: space-between, $align: center);
+    }
+
+    &__title {
+      color: $text-black;
+      font-size: $fs-l;
+      font-weight: 700;
+    }
+
+    &__tag {
+      @include flex($justify: left, $align: center);
+      width: 100%;
+      z-index: $z-sticky;
+    }
+
+    &__price {
+      color: $other-color;
+      font-size: $fs-l;
+
+      .price__old {
+        text-decoration: line-through;
+        opacity: 0.5;
+        font-size: $fs-base;
+      }
+    }
+
+    &__button {
+      z-index: $z-sticky;
+    }
+  }
+}
+
+.product:hover .card {
+  border: none;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.product:hover .card__title {
+  color: $other-color;
+}
