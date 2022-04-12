@@ -1,0 +1,20 @@
+@import '../../../assets/scss/variable';
+@import '../../../assets/scss/mixins/mixins';
+
+.contact__block {
+    @include flex($justify: center, $align: center);
+    border-radius: 8px;
+    width: 48px;
+    height: 48px;
+    background-color: $text-gray1;
+    margin: 0 10px;
+
+    i {
+        font-size: $fs-7xl;
+        color: $black-color;
+    }
+}
+
+.contact__block:hover {
+    background-color:$other-color;
+}

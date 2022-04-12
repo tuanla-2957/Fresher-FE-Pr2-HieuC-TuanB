@@ -1,0 +1,36 @@
+@import '../../../assets/scss/variable';
+@import '../../../assets//scss/mixins/mixins';
+
+.footer {
+    width: 100%;
+    background-color: $bg-footer;
+    color: $text-gray1;
+
+    &-top {
+        padding: 90px 0;
+        border-bottom: 1px solid $text-gray1;
+    }
+
+    &__title {
+        width: 100%;
+        text-align: center;
+        font-size: $fs-7xl;
+        color: $text-white;
+        font-weight: 400;
+    }
+
+    &-bot {
+        @include flex($justify: space-between, $align: center);
+        padding: 50px 0;
+    }
+
+    &__text {
+        font-size: $fs-s;
+    }
+
+    &__contact {
+        @include flex($justify: center, $align: center);
+        margin-top: 30px;
+        width: 100%;
+    }
+}

@@ -1,0 +1,19 @@
+@import "../variable";
+
+.input {
+  outline: none;
+  border: 1px solid $border-line;
+  width: 100%;
+  line-height: $lh-l;
+  font-size: $fs-xs;
+  padding: 7px 15px;
+}
+
+.input-radius {
+  border-radius: 50px;
+}
+
+.input-outline {
+  border: none;
+  background-color: transparent;
+}
