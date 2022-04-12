@@ -1,0 +1,35 @@
+@import "./variable";
+
+.button {
+  display: inline-block;
+  text-decoration: none;
+  background-color: transparent;
+  border: 1px solid $border-line;
+  outline: none;
+  color: $text-white;
+  font-size: $fs-s;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: 400;
+  border-radius: 4px;
+}
+
+.button-base {
+    background-color: $other-color;
+}
+
+.button-base:hover {
+    background-color: $gray-color;
+}
+
+.button--success {
+    background-color: $green-color1;
+}
+
+.button--success:hover {
+    background-color: $green-color2;
+}
+
+.button--danger {
+    background-color: $red-color;
+}

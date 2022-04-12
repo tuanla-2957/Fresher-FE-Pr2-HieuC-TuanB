@@ -1,0 +1,33 @@
+@import "./variable";
+body {
+  font-family: $ff-roboto;
+  color: $text-black;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: $fs-base;
+  line-height: $lh-base;
+  font-weight: 400;
+  box-sizing: border-box;
+  color: $text-black;
+}
+
+.text__title {
+  font-size: $fs-7xl;
+  font-weight: 300;
+}
+
+.text__title--bold {
+  font-weight: 700;
+}
+
+.text__title--gray {
+  font-size: $fs-3xl;
+  font-weight: 400;
+  color: $text-gray2;
+}
