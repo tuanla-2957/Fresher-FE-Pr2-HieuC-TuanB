@@ -1,0 +1,26 @@
+@import "../../../assets/scss/variable";
+@import "../../../assets/scss/keyframes/keyframes";
+
+.nav {
+  &__item {
+    position: relative;
+    margin: 0 10px;
+    line-height: $lh-6xl;
+    cursor: pointer;
+  }
+
+  &__item::after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    height: 0px;
+    bottom: 0;
+    background-color: $other-color;
+  }
+
+  &__item:hover::after {
+    height: 1px;
+    animation: lineExtend ease-in 0.2s;
+  }
+}

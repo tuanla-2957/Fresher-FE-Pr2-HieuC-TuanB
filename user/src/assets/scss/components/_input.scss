@@ -1,4 +1,4 @@
-@import "./variable";
+@import "../variable";
 
 .input {
   outline: none;
@@ -11,4 +11,9 @@
 
 .input-radius {
   border-radius: 50px;
+}
+
+.input-outline {
+  border: none;
+  background-color: transparent;
 }

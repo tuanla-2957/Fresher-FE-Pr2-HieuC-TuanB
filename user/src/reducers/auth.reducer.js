@@ -1,16 +1,7 @@
-import { authConstant } from "../actions/constant";
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE , LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE } from "../actions/constant";
 const initialState = {
     token: null,
-    user: {
-        firstName: "",
-        lastName: "",
-        userName: "",
-        dob: "",
-        phone: "",
-        email: "",
-        picture: "",
-        isMng: false,
-    },
+    user: null,
     authenticate: false,
     authenticating: false,
     loading: false,
@@ -19,13 +10,13 @@ const initialState = {
 };
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
-        case authConstant.LOGIN_REQUEST:
+        case LOGIN_REQUEST:
             state = {
                 ...state,
                 authenticating: true,
             };
             break;
-        case authConstant.LOGIN_SUCCESS:
+        case LOGIN_SUCCESS:
             state = {
                 ...state,
                 user: action.payload.user,
@@ -35,26 +26,26 @@ const authReducer = (state = initialState, action) => {
                 authenticating: false,
             };
             break;
-        case authConstant.LOGIN_FAILURE:
+        case LOGIN_FAILURE:
             state = {
                 ...state,
                 authenticating: false,
                 error: action.payload.error,
             };
             break;
-        case authConstant.LOGOUT_REQUEST:
+        case LOGOUT_REQUEST:
             state = {
                 ...state,
                 loading: true,
             };
             break;
-        case authConstant.LOGOUT_SUCCESS:
+        case LOGOUT_SUCCESS:
             state = {
                 ...initialState,
                 loading: false,
             };
             break;
-        case authConstant.LOGOUT_FAILURE:
+        case LOGOUT_FAILURE:
             state = {
                 ...state,
                 error: action.payload.error,
