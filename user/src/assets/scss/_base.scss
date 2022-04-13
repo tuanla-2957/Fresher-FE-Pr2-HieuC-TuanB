@@ -31,3 +31,11 @@ html {
   font-weight: 400;
   color: $text-gray2;
 }
+
+.text-form-danger{
+  font-size: $fs-xs ;
+  font-weight: inherit ;
+  margin-left: 10px;
+  margin-top: 5px;
+  color: red;
+}

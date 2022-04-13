@@ -1,0 +1,6 @@
+@import "../../../scss/variables.scss";
+@import "../../../scss/mixin.scss";
+
+.table {
+  @include flex($justify: center, $direction: column, $align: stretch);
+}
