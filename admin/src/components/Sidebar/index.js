@@ -3,12 +3,14 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../actions";
 import useAvatar from "../../assets/images/userAvatar.jpg";
+import { useTranslation } from "react-i18next";
 
 import "./style.scss";
 
 export default function Sidebar() {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   return (
     <nav className='sidebar'>
       <div className='sidebar-container'>
@@ -17,17 +19,17 @@ export default function Sidebar() {
         </h1>
         <ul>
           <li>
-            <NavLink to={"/"}>Home</NavLink>
+            <NavLink to={"/"}>{t("Home")}</NavLink>
           </li>
           <li>
-            <NavLink to={"/products"}>Product</NavLink>
+            <NavLink to={"/products"}>{t("Product")}</NavLink>
           </li>
           <li>
-            <NavLink to={"/order"}>Order</NavLink>
+            <NavLink to={"/order"}>{t("Order")}</NavLink>
           </li>
         </ul>
         <div className='sidebar-footer'>
-          <h3>Profile</h3>
+          <h3>{t("Profile")}</h3>
           <div className='account'>
             <div className='account-img'>
               <img src={user.profilePicture || useAvatar} alt='avatar' />
@@ -35,7 +37,7 @@ export default function Sidebar() {
             <h4 className='account-name'>Hieu</h4>
           </div>
           <button className='signout-button' onClick={() => dispatch(logOut())}>
-            Signout
+            {t("Signout")}
           </button>
         </div>
       </div>

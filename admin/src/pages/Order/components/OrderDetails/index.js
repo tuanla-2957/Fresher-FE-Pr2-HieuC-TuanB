@@ -10,6 +10,7 @@ import {
 } from "../../../../actions";
 import Layout from "../../../../components/Layout";
 import FormatDate from "../../../../components/UI/FormatDate";
+import { useTranslation } from "react-i18next";
 
 import "./style.scss";
 import { Spinner } from "../../../../components/UI/Spinner";
@@ -22,6 +23,7 @@ export default function OrderDetails() {
   const { orderDetails, loading } = useSelector((state) => state.orders);
   const [currentStep, setCurrentStep] = useState(1);
   const [status, setStatus] = useState([]);
+  const { t } = useTranslation();
 
   const dispatch = useDispatch();
 
@@ -59,14 +61,14 @@ export default function OrderDetails() {
       {orderDetails && (
         <div className='order-detail'>
           <h3 className='order-owner'>
-            Order by :
+            {t("OrderBy")} :
             <span>
               <strong>{orderDetails.user.userName}</strong>
             </span>
           </h3>
           <OrderDetailTable data={orderDetails.items} />
           <h4>
-            Total Price: <span>{orderDetails.totalAmount}</span>
+            {t("Total")}: <span>{orderDetails.totalAmount}</span>
           </h4>
           <Steps current={currentStep}>
             {status.map((status) => (
@@ -80,7 +82,9 @@ export default function OrderDetails() {
           <div className='order-updateStatus'>
             <Select
               defaultValue={
-                orderDetails.status == "completed" ? "Finished" : "Update"
+                orderDetails.status == "completed"
+                  ? `${t("Finished")}`
+                  : `${t("Update")}`
               }
               disabled={orderDetails.status == "completed" ? true : false}
               style={{ width: 120 }}

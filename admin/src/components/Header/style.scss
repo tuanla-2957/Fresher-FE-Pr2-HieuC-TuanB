@@ -44,4 +44,13 @@ header {
       border-radius: 0.5rem;
     }
   }
+
+  .toggle-language {
+    cursor: pointer;
+
+    select {
+      cursor: pointer;
+      border: none;
+    }
+  }
 }

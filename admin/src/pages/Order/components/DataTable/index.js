@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import FormatDate from "../../../../components/UI/FormatDate";
 import { BsArrowBarLeft, BsArrowBarRight } from "react-icons/bs";
 import Button from "../../../../components/UI/Button";
+import { useTranslation } from "react-i18next";
 
 import "./style.scss";
 
@@ -105,59 +106,57 @@ function Table({ columns, data }) {
 }
 
 function App(props) {
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: " Select",
-        accessor: "select",
-      },
-      {
-        Header: " OrderBy",
-        accessor: "orderBy",
-      },
-      {
-        Header: "Total Amount",
-        accessor: "totalAmount",
-      },
-      {
-        Header: "Total Item",
-        accessor: "totalItem",
-      },
-      {
-        Header: "Type",
-        accessor: "paymentType",
-      },
-      {
-        Header: "Status",
-        accessor: "status",
-      },
-      {
-        Header: (
-          <div style={{ padding: "0 50px", boxSizing: "border-box" }}>
-            <p>CreatedAt</p>
-            <select
-              onClick={(e) => console.log(e.target.value)}
-              style={{ border: "0.5px solid gray", borderRadius: "4px" }}
-            >
-              <option value={""}>Sort by</option>
-              <option value={-1}>Newest</option>
-              <option value={1}>Oldest</option>
-            </select>
-          </div>
-        ),
-        accessor: "createdAt",
-      },
-      {
-        Header: "UpdatedAt",
-        accessor: "updatedAt",
-      },
-      {
-        Header: "Details",
-        accessor: "details",
-      },
-    ],
-    []
-  );
+  const { t } = useTranslation();
+  const columns = [
+    {
+      Header: `${t("Select")}`,
+      accessor: "select",
+    },
+    {
+      Header: `${t("OrderBy")}`,
+      accessor: "orderBy",
+    },
+    {
+      Header: `${t("Total Amount")}`,
+      accessor: "totalAmount",
+    },
+    {
+      Header: `${t("Total Item")}`,
+      accessor: "totalItem",
+    },
+    {
+      Header: `${t("Payment Type")}`,
+      accessor: "paymentType",
+    },
+    {
+      Header: `${t("Status")}`,
+      accessor: "status",
+    },
+    {
+      Header: (
+        <div style={{ padding: "0 50px", boxSizing: "border-box" }}>
+          <p>{t("Created At")}</p>
+          <select
+            onClick={(e) => console.log(e.target.value)}
+            style={{ border: "0.5px solid gray", borderRadius: "4px" }}
+          >
+            <option value={""}>{t("Sort by")}</option>
+            <option value={-1}>{t("Newest")}</option>
+            <option value={1}>{t("Oldest")}</option>
+          </select>
+        </div>
+      ),
+      accessor: "createdAt",
+    },
+    {
+      Header: `${t("Updated At")}`,
+      accessor: "updatedAt",
+    },
+    {
+      Header: `${t("Details")}`,
+      accessor: "details",
+    },
+  ];
 
   const renderStatus = (status) => {
     if (status === "completed") {
@@ -190,7 +189,7 @@ function App(props) {
           .reduce((a, b) => a + b),
         details: (
           <Button>
-            <Link to={`/order/${order._id}`}>Details</Link>
+            <Link to={`/order/${order._id}`}>{t("Details")}</Link>
           </Button>
         ),
         updatedAt: <FormatDate date={order.updatedAt} />,
