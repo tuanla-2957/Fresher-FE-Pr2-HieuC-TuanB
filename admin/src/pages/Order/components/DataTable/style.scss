@@ -1,0 +1,23 @@
+@import "../../../../scss/variables.scss";
+@import "../../../../scss//mixin.scss";
+
+.order-status {
+  border-radius: 0.3rem;
+
+  &--complete {
+    background-color: $color-primary;
+  }
+
+  &--ordered {
+    background-color: $color-tertiary-light;
+  }
+
+  &--progress {
+    background-color: $color-secondary-dark;
+  }
+
+  &--cancelled {
+    background-color: $color-red;
+    color: $color-white;
+  }
+}
