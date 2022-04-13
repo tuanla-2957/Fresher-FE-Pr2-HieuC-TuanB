@@ -1,0 +1,79 @@
+@import "../../assets/scss/variable";
+@import "../../assets/scss/mixins/mixins";
+
+.post {
+  width: 100%;
+  position: relative;
+  padding: 10px;
+
+  .card-wrapper {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .card {
+    height: 100%;
+
+    .card-body {
+      @include flex($justify: center, $align: center, $direction: column);
+      padding: 20px;
+    }
+
+    &__row {
+      width: 100%;
+      @include flex($justify: space-between, $align: center);
+    }
+
+    &__author {
+      font-size: $fs-s;
+      color: $text-gray1;
+      line-height: $lh-4xl;
+    }
+
+    .comment {
+      color: $text-gray1;
+      font-size: $fs-s;
+      z-index: $z-sticky;
+    }
+
+    &__title {
+      padding: 25px 0;
+      width: 100%;
+      text-align: left;
+      font-weight: 700;
+    }
+
+    &__text {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      color: $text-gray1;
+      height: 100px;
+      overflow: hidden;
+      width: 100%;
+      text-overflow: ellipsis;
+      white-space: normal;
+      -webkit-line-clamp: 5;
+      line-height: $lh-base;
+    }
+
+    &__button {
+      margin-top: 20px;
+      z-index: $z-sticky;
+    }
+
+    h2, p {
+      font-size: $fs-base;
+      font-weight: 400;
+    }
+  }
+}
+
+.post:hover .card{
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    color: $other-color;
+  }

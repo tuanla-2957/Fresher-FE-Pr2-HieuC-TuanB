@@ -1,0 +1,38 @@
+@import '../../assets/scss/variable';
+@import '../../assets/scss/mixins/mixins';
+
+.home {
+    padding-top: 130px;
+    width: 100%;
+
+    .advertisement {
+        @include bg($url: "https://codex-themes.com/thegem/sites/shop-online/wp-content/uploads/2019/01/1-12.jpg", $size: cover);
+        padding: 50px 0;
+
+        .text__title {
+            color: $text-white;
+        }
+    }
+
+    .product-list {
+        margin: 50px 0;
+    }
+
+    &__title {
+        @include flex($justify: center, $align: center, $direction: column);
+    }
+
+    &__hot-product {
+        padding: 100px 0;
+    }
+
+    .btn__see-more {
+        @include flex($justify: center, $align: center);
+        width: 100%;
+    }
+
+    &__new {
+        background-color: $gray-color2;
+        padding: 100px 0;
+    }
+}

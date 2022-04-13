@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './Navbar.scss'
 
 const Navbar = ({ navList }) => {
@@ -7,9 +8,9 @@ const Navbar = ({ navList }) => {
             <ul>
                 {navList.map((item) => {
                     return (
-                        <a href={item.src} key={item.id}>
-                            <li className='nav__item'>{item.name}</li>
-                        </a>
+                        <NavLink to={item.src} key={item.id} className="nav__item">
+                            <li>{item.name}</li>
+                        </NavLink>
                     )
                 })}
             </ul>

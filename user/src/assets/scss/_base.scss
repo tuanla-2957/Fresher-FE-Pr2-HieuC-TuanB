@@ -31,3 +31,13 @@ html {
   font-weight: 400;
   color: $text-gray2;
 }
+
+.text__title--bold {
+  font-weight: 700;
+}
+
+.text__title--gray {
+  font-size: $fs-3xl;
+  font-weight: 400;
+  color: $text-gray2;
+}

@@ -1,0 +1,49 @@
+@import "../../../assets/scss/variable";
+
+.button-add-to-cart {
+    padding: 5px 15px;
+    border-radius: 30px;
+    border: 1px solid $gray-color2;
+    background-color: $gray-color2;
+    color: $gray-color3;
+    transition: all .3s;
+}
+
+.button-add-to-cart:hover {
+    color: $text-white;
+    background-color: $text-black;
+}
+
+.button-tag {
+    padding: 0px 5px;
+    border-radius: 30px;
+    background-color: $blue-color;
+    border: 1px solid $blue-color;
+    font-size: $fs-xs;
+    font-weight: 700;
+    transition: all .3s;
+}
+
+.button-tag + .button-tag {
+    margin-left: 10px;
+}
+
+.button-tag:hover {
+    border: 1px solid $text-black;
+    color: $text-white;
+    background-color: $text-black;
+}
+
+.button-more {
+    padding: 2px 24px;
+    border: 2px solid $other-color;
+    color: $other-color;
+    font-size: $fs-s;
+    background-color: $bg-white;
+    font-weight: 700;
+}
+
+.button-more:hover {
+    background-color: $other-color;
+    color: $text-white;
+}
