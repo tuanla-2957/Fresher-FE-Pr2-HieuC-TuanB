@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useTable, usePagination, useRowSelect } from "react-table";
+import { Link } from "react-router-dom";
 
 import FormatDate from "../../../../components/UI/FormatDate";
 import { BsArrowBarLeft, BsArrowBarRight } from "react-icons/bs";
@@ -107,67 +108,52 @@ function App(props) {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Name",
-        columns: [
-          {
-            Header: " Select",
-            accessor: "select",
-          },
-          {
-            Header: " OrderBy",
-            accessor: "orderBy",
-          },
-        ],
+        Header: " Select",
+        accessor: "select",
       },
       {
-        Header: "Info",
-        columns: [
-          {
-            Header: "Total Amount",
-            accessor: "totalAmount",
-          },
-          {
-            Header: "Total Item",
-            accessor: "totalItem",
-          },
-          {
-            Header: "Type",
-            accessor: "paymentType",
-          },
-        ],
+        Header: " OrderBy",
+        accessor: "orderBy",
       },
       {
-        Header: "Update",
-        columns: [
-          {
-            Header: "Status",
-            accessor: "status",
-          },
-          {
-            Header: (
-              <div style={{ padding: "0 50px", boxSizing: "border-box" }}>
-                <p>CreatedAt</p>
-                <select
-                  onClick={(e) => console.log(e.target.value)}
-                  style={{ border: "0.5px solid gray", borderRadius: "4px" }}
-                >
-                  <option value={""}>Sort by</option>
-                  <option value={-1}>Newest</option>
-                  <option value={1}>Oldest</option>
-                </select>
-              </div>
-            ),
-            accessor: "createdAt",
-          },
-          {
-            Header: "UpdatedAt",
-            accessor: "updatedAt",
-          },
-          {
-            Header: "Details",
-            accessor: "details",
-          },
-        ],
+        Header: "Total Amount",
+        accessor: "totalAmount",
+      },
+      {
+        Header: "Total Item",
+        accessor: "totalItem",
+      },
+      {
+        Header: "Type",
+        accessor: "paymentType",
+      },
+      {
+        Header: "Status",
+        accessor: "status",
+      },
+      {
+        Header: (
+          <div style={{ padding: "0 50px", boxSizing: "border-box" }}>
+            <p>CreatedAt</p>
+            <select
+              onClick={(e) => console.log(e.target.value)}
+              style={{ border: "0.5px solid gray", borderRadius: "4px" }}
+            >
+              <option value={""}>Sort by</option>
+              <option value={-1}>Newest</option>
+              <option value={1}>Oldest</option>
+            </select>
+          </div>
+        ),
+        accessor: "createdAt",
+      },
+      {
+        Header: "UpdatedAt",
+        accessor: "updatedAt",
+      },
+      {
+        Header: "Details",
+        accessor: "details",
       },
     ],
     []
@@ -203,7 +189,9 @@ function App(props) {
           .map((item) => item.purchaseQty)
           .reduce((a, b) => a + b),
         details: (
-          <Button onClick={() => props.getDetails(order)}>Details</Button>
+          <Button>
+            <Link to={`/order/${order._id}`}>Details</Link>
+          </Button>
         ),
         updatedAt: <FormatDate date={order.updatedAt} />,
         createdAt: <FormatDate date={order.createdAt} />,

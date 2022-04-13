@@ -1,0 +1,6 @@
+@import "../../../../scss/variables.scss";
+@import "../../../../scss//mixin.scss";
+
+.order-detail {
+  @include flex($justify: flex-start, $align: center, $direction: column, $gap: 1rem);
+}
