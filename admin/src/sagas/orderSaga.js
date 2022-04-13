@@ -9,12 +9,16 @@ import {
 import {
   GET_ORDERS_REQUEST,
   GET_ORDER_DETAIL_REQUEST,
+  UPDATE_ORDER_REQUEST,
+  UPDATE_ORDER_SUCCESS,
 } from "../actions/constant";
 import {
   getOrderDetailFailure,
   getOrderDetailSuccess,
   getOrdersFailure,
   getOrdersSuccess,
+  updateOrdersFailure,
+  updateOrdersSuccess,
 } from "../actions";
 import axiosInstance from "../helper/axios";
 
@@ -30,6 +34,10 @@ const getOrderById = async (orderId) => {
   return { orderDetails: response.data.order };
 };
 
+const updateOrder = async (payload) => {
+  await axiosInstance.put("order/admin/update", payload);
+};
+
 export function* getCustomerOrders({ payload }) {
   try {
     const orders = yield getOrders();
@@ -42,12 +50,21 @@ export function* getCustomerOrders({ payload }) {
 export function* getOrderDetails({ payload: orderId }) {
   const order = yield select(getOrder);
   const { orderDetails } = order;
-  const orderIdParams = orderDetails._id ? orderDetails._id : orderId;
+  const orderIdParams = orderId || orderDetails._id;
   try {
     const orderDetails = yield getOrderById(orderIdParams);
     yield put(getOrderDetailSuccess(orderDetails));
   } catch (error) {
     yield put(getOrderDetailFailure(error));
+  }
+}
+
+export function* updateCustomerOrder({ payload }) {
+  try {
+    yield updateOrder(payload);
+    yield put(updateOrdersSuccess());
+  } catch (error) {
+    yield put(updateOrdersFailure(error));
   }
 }
 
@@ -59,6 +76,15 @@ export function* onLoadingOrderDetails() {
   yield takeEvery(GET_ORDER_DETAIL_REQUEST, getOrderDetails);
 }
 
+export function* onUpdateOrder() {
+  yield takeEvery(UPDATE_ORDER_REQUEST, updateCustomerOrder);
+  yield takeEvery(UPDATE_ORDER_SUCCESS, getOrderDetails);
+}
+
 export function* ordersSaga() {
-  yield all([call(onLoadingOrders), call(onLoadingOrderDetails)]);
+  yield all([
+    call(onLoadingOrders),
+    call(onLoadingOrderDetails),
+    call(onUpdateOrder),
+  ]);
 }

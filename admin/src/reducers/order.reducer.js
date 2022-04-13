@@ -5,11 +5,14 @@ import {
   GET_ORDER_DETAIL_FAILURE,
   GET_ORDER_DETAIL_REQUEST,
   GET_ORDER_DETAIL_SUCCESS,
+  UPDATE_ORDER_FAILURE,
+  UPDATE_ORDER_REQUEST,
+  UPDATE_ORDER_SUCCESS,
 } from "../actions/constant";
 
 const initialState = {
   orders: [],
-  orderDetails: {},
+  orderDetails: null,
   loading: true,
   error: null,
 };
@@ -46,6 +49,23 @@ export default (state = initialState, action) => {
         loading: false,
       };
     case GET_ORDER_DETAIL_FAILURE:
+      return {
+        ...state,
+        error: action.payload.error,
+        loading: false,
+      };
+    // UPDATE
+    case UPDATE_ORDER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case UPDATE_ORDER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case UPDATE_ORDER_FAILURE:
       return {
         ...state,
         error: action.payload.error,
