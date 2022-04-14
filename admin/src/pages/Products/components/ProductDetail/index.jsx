@@ -116,14 +116,6 @@ export default function ProductDetails() {
     setTags([...tags].filter((tag) => tag !== value));
   };
 
-  if (loading) {
-    return (
-      <Layout sidebar>
-        <Spinner />
-      </Layout>
-    );
-  }
-
   const updateProduct = (data) => {
     let product = { ...data };
     product = {
@@ -138,123 +130,133 @@ export default function ProductDetails() {
     dispatch(updateProductsRequest({ updateProduct: product }));
   };
 
+  if (loading) {
+    return (
+      <Layout sidebar>
+        <Spinner />
+      </Layout>
+    );
+  }
+
   return (
     <Layout sidebar>
-      <form className='productdetail' onSubmit={handleSubmit(updateProduct)}>
-        <div className='product-image'>
-          <h4>Avatar</h4>
-          <input
-            type='file'
-            className='custom-file-input'
-            onChange={handleFileInput}
-            ref={imageInputRef}
-          />
-          <div>
-            {imgUrl && <img className='avatar' alt='avatar' src={imgUrl} />}
-          </div>
-        </div>
-        <div className='product-image'>
-          <h4>Photos</h4>
-          <input
-            type='file'
-            className='custom-file-input'
-            onChange={handlePhotosInput}
-          />
-          <div style={{ display: "flex" }}>
-            {photos.map((photo) => (
-              <img
-                className='avatar'
-                alt='photo'
-                src={photo}
-                onClick={() => removePhoto(photo)}
-              />
-            ))}
-          </div>
-        </div>
-        <label>
-          Name
-          <input
-            defaultValue={selectedProduct.product.name}
-            {...register("name")}
-          />
-          <p className='error-message'>{errors.name?.message}</p>
-        </label>
-        <div className='product-checkbox'>
-          <label>
-            Is hot
+      {selectedProduct.product && (
+        <form className='productdetail' onSubmit={handleSubmit(updateProduct)}>
+          <div className='product-image'>
+            <h4>Avatar</h4>
             <input
-              type='checkbox'
-              checked={isHot ? true : false}
-              onChange={() => {
-                setIsHot(!isHot);
-              }}
-              className='form-control-sm'
+              type='file'
+              className='custom-file-input'
+              onChange={handleFileInput}
+              ref={imageInputRef}
             />
-          </label>
-          <label>
-            Inslider
-            <input
-              type='checkbox'
-              checked={inSlider ? true : false}
-              onChange={() => setInslider(!inSlider)}
-              className='form-control-sm'
-            />
-          </label>
-        </div>
-
-        <label>
-          List Price
-          <input
-            defaultValue={selectedProduct.product.listedPrice}
-            {...register("listedPrice")}
-          />
-          <p className='error-message'>{errors.listedPrice?.message}</p>
-        </label>
-
-        <label>
-          Discount Price
-          <input
-            defaultValue={selectedProduct.product.discountPrice}
-            {...register("discountPrice")}
-          />
-          <p className='error-message'>{errors.discountPrice?.message}</p>
-        </label>
-
-        <label>
-          Quantity
-          <input
-            defaultValue={selectedProduct.product.quantity}
-            {...register("quantity")}
-          />
-          <p className='error-message'>{errors.quantity?.message}</p>
-        </label>
-        <div>
-          <label>
-            Add tag
             <div>
-              <input type='text' ref={tagRef} />
-              <Button onClick={handleTagsInput}>Add </Button>
+              {imgUrl && <img className='avatar' alt='avatar' src={imgUrl} />}
             </div>
+          </div>
+          <div className='product-image'>
+            <h4>Photos</h4>
+            <input
+              type='file'
+              className='custom-file-input'
+              onChange={handlePhotosInput}
+            />
+            <div style={{ display: "flex" }}>
+              {photos.map((photo) => (
+                <img
+                  className='avatar'
+                  alt='photo'
+                  src={photo}
+                  onClick={() => removePhoto(photo)}
+                />
+              ))}
+            </div>
+          </div>
+          <label>
+            Name
+            <input
+              defaultValue={selectedProduct.product.name}
+              {...register("name")}
+            />
+            <p className='error-message'>{errors.name?.message}</p>
+          </label>
+          <div className='product-checkbox'>
+            <label>
+              Is hot
+              <input
+                type='checkbox'
+                checked={isHot ? true : false}
+                onChange={() => {
+                  setIsHot(!isHot);
+                }}
+                className='form-control-sm'
+              />
+            </label>
+            <label>
+              Inslider
+              <input
+                type='checkbox'
+                checked={inSlider ? true : false}
+                onChange={() => setInslider(!inSlider)}
+                className='form-control-sm'
+              />
+            </label>
+          </div>
+
+          <label>
+            List Price
+            <input
+              defaultValue={selectedProduct.product.listedPrice}
+              {...register("listedPrice")}
+            />
+            <p className='error-message'>{errors.listedPrice?.message}</p>
           </label>
 
-          <div className='tag-list'>
-            {tags.map((tag) => (
-              <span className='tag' onClick={() => removeTag(tag)}>
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-        <div className='product-description'>
-          <label>Description</label>
-          <textarea
-            defaultValue={selectedProduct.product.description}
-            {...register("description")}
-          />
-        </div>
+          <label>
+            Discount Price
+            <input
+              defaultValue={selectedProduct.product.discountPrice}
+              {...register("discountPrice")}
+            />
+            <p className='error-message'>{errors.discountPrice?.message}</p>
+          </label>
 
-        <Button type='submit'>Update</Button>
-      </form>
+          <label>
+            Quantity
+            <input
+              defaultValue={selectedProduct.product.quantity}
+              {...register("quantity")}
+            />
+            <p className='error-message'>{errors.quantity?.message}</p>
+          </label>
+          <div>
+            <label>
+              Add tag
+              <div>
+                <input type='text' ref={tagRef} />
+                <Button onClick={handleTagsInput}>Add </Button>
+              </div>
+            </label>
+
+            <div className='tag-list'>
+              {tags.map((tag) => (
+                <span className='tag' onClick={() => removeTag(tag)}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className='product-description'>
+            <label>Description</label>
+            <textarea
+              defaultValue={selectedProduct.product.description}
+              {...register("description")}
+            />
+          </div>
+
+          <Button type='submit'>Update</Button>
+        </form>
+      )}
     </Layout>
   );
 }
