@@ -1,0 +1,16 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixin.scss";
+
+.order-container {
+  @include grid($column: repeat(2, 1fr), $row-gap: 2rem, $col-gap: 1rem);
+
+  .chart {
+    height: 30vh;
+    background-color: $color-grey-light-1;
+    border-radius: 0.5rem;
+  }
+
+  &__table {
+    grid-column: 1/-1;
+  }
+}

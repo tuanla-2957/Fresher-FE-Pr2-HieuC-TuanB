@@ -5,6 +5,12 @@ import {
   GET_ORDER_DETAIL_FAILURE,
   GET_ORDER_DETAIL_REQUEST,
   GET_ORDER_DETAIL_SUCCESS,
+  GET_SALE_BY_DAY_FAILURE,
+  GET_SALE_BY_DAY_REQUEST,
+  GET_SALE_BY_DAY_SUCCESS,
+  GET_SALE_BY_MONTH_FAILURE,
+  GET_SALE_BY_MONTH_REQUEST,
+  GET_SALE_BY_MONTH_SUCCESS,
   UPDATE_ORDER_FAILURE,
   UPDATE_ORDER_REQUEST,
   UPDATE_ORDER_SUCCESS,
@@ -15,6 +21,10 @@ const initialState = {
   orderDetails: null,
   loading: true,
   error: null,
+  salesByMonth: [],
+  loadSalesByMonth: true,
+  salesByDay: [],
+  loadSalesByDay: true,
 };
 
 export default (state = initialState, action) => {
@@ -70,6 +80,43 @@ export default (state = initialState, action) => {
         ...state,
         error: action.payload.error,
         loading: false,
+      };
+
+    // CHART
+    case GET_SALE_BY_DAY_REQUEST:
+      return {
+        ...state,
+        loadSalesByDay: true,
+      };
+    case GET_SALE_BY_DAY_SUCCESS:
+      return {
+        ...state,
+        salesByDay: action.payload.salesByDay,
+        loadSalesByDay: false,
+      };
+    case GET_SALE_BY_DAY_FAILURE:
+      return {
+        ...state,
+        error: action.payload.error,
+        loadSalesByDay: false,
+      };
+
+    case GET_SALE_BY_MONTH_REQUEST:
+      return {
+        ...state,
+        loadSalesByMonth: true,
+      };
+    case GET_SALE_BY_MONTH_SUCCESS:
+      return {
+        ...state,
+        salesByMonth: action.payload.salesByMonth,
+        loadSalesByMonth: false,
+      };
+    case GET_SALE_BY_MONTH_FAILURE:
+      return {
+        ...state,
+        error: action.payload.error,
+        loadSalesByMonth: false,
       };
 
     default:

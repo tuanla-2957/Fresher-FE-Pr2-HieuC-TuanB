@@ -38,7 +38,7 @@ const PopulateTagChart = () => {
         <YAxis dataKey='_id' type='category' scale='band' />
         <Tooltip />
         <Legend />
-        <Bar dataKey='totalCount' barSize={20} fill='#413ea0' />
+        <Bar dataKey='totalCount' barSize={20} fill='#55BCC9' />
       </ComposedChart>
     </ResponsiveContainer>
   );

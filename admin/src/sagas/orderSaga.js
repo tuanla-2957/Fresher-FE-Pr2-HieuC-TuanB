@@ -9,6 +9,8 @@ import {
 import {
   GET_ORDERS_REQUEST,
   GET_ORDER_DETAIL_REQUEST,
+  GET_SALE_BY_DAY_REQUEST,
+  GET_SALE_BY_MONTH_REQUEST,
   UPDATE_ORDER_REQUEST,
   UPDATE_ORDER_SUCCESS,
 } from "../actions/constant";
@@ -17,6 +19,10 @@ import {
   getOrderDetailSuccess,
   getOrdersFailure,
   getOrdersSuccess,
+  getSalesByDaySuccess,
+  getSalesByDayFailure,
+  getSalesByMonthFailure,
+  getSalesByMonthSuccess,
   updateOrdersFailure,
   updateOrdersSuccess,
 } from "../actions";
@@ -36,6 +42,20 @@ const getOrderById = async (orderId) => {
 
 const updateOrder = async (payload) => {
   await axiosInstance.put("order/admin/update", payload);
+};
+
+const fetchSalesByDay = async (payload) => {
+  const response = await axiosInstance.post("summary/getSalesByDay", {
+    ...payload,
+  });
+  return { salesByDay: response.data.results };
+};
+
+const fetchSalesByMonth = async (payload) => {
+  const response = await axiosInstance.get("summary/getSalesByMonth", {
+    ...payload,
+  });
+  return { salesByMonth: response.data.results };
 };
 
 export function* getCustomerOrders({ payload }) {
@@ -67,6 +87,23 @@ export function* updateCustomerOrder({ payload }) {
     yield put(updateOrdersFailure(error));
   }
 }
+export function* getSalesByDay({ payload }) {
+  try {
+    const salesByDay = yield fetchSalesByDay(payload);
+    yield put(getSalesByDaySuccess(salesByDay));
+  } catch (error) {
+    yield put(getSalesByDayFailure(error));
+  }
+}
+
+export function* getSalesByMonth({ payload }) {
+  try {
+    const salesByMonth = yield fetchSalesByMonth(payload);
+    yield put(getSalesByMonthSuccess(salesByMonth));
+  } catch (error) {
+    yield put(getSalesByMonthFailure(error));
+  }
+}
 
 export function* onLoadingOrders() {
   yield takeEvery(GET_ORDERS_REQUEST, getCustomerOrders);
@@ -81,10 +118,20 @@ export function* onUpdateOrder() {
   yield takeEvery(UPDATE_ORDER_SUCCESS, getOrderDetails);
 }
 
+export function* onLoadingSalesByDay() {
+  yield takeLatest(GET_SALE_BY_DAY_REQUEST, getSalesByDay);
+}
+
+export function* onLoadingSalesByMonth() {
+  yield takeLatest(GET_SALE_BY_MONTH_REQUEST, getSalesByMonth);
+}
+
 export function* ordersSaga() {
   yield all([
     call(onLoadingOrders),
     call(onLoadingOrderDetails),
     call(onUpdateOrder),
+    call(onLoadingSalesByDay),
+    call(onLoadingSalesByMonth),
   ]);
 }
