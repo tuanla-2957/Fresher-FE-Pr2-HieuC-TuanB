@@ -117,10 +117,20 @@
       width: 100%;
       text-align: center;
       padding: 5px 0;
+      color: $text-gray2;
+    }
+
+    &__item:hover {
+      color: $other-color;
     }
   }
 
   .account:hover .account__option {
     display: block;
+  }
+
+  .text__login {
+    font-size: $fs-s;
+    cursor: pointer;
   }
 }
