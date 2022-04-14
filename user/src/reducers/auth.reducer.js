@@ -1,12 +1,13 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE , LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE } from "../actions/constant";
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE , LOG_OUT, REGISTER_SUCCESS } from "../actions/constant";
 const initialState = {
     token: null,
     user: null,
-    authenticate: false,
+    isAuthenticate: false,
     authenticating: false,
     loading: false,
     error: null,
     message: "",
+    userRegister: null
 };
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -22,7 +23,7 @@ const authReducer = (state = initialState, action) => {
                 user: action.payload.user,
                 token: action.payload.token,
                 error: null,
-                authenticate: true,
+                isAuthenticate: true,
                 authenticating: false,
             };
             break;
@@ -33,24 +34,14 @@ const authReducer = (state = initialState, action) => {
                 error: action.payload.error,
             };
             break;
-        case LOGOUT_REQUEST:
+        case REGISTER_SUCCESS:
             state = {
                 ...state,
-                loading: true,
+                userRegister: action.payload.user
             };
             break;
-        case LOGOUT_SUCCESS:
-            state = {
-                ...initialState,
-                loading: false,
-            };
-            break;
-        case LOGOUT_FAILURE:
-            state = {
-                ...state,
-                error: action.payload.error,
-                loading: false,
-            };
+        case LOG_OUT:
+            state = initialState;
             break;
         default: 
             return state

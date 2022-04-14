@@ -1,7 +1,7 @@
 import axios from "axios";
 import { api } from "../urlConfig";
 import store from "../store";
-import { LOGOUT_SUCCESS } from "../actions/constant";
+import { LOG_OUT } from "../actions/constant";
 
 const token = window.localStorage.getItem("token");
 
@@ -28,7 +28,7 @@ axiosInstance.interceptors.response.use(
         const { status } = error.response;
         if (status === 500) {
             localStorage.clear();
-            store.dispatch({ type: LOGOUT_SUCCESS });
+            store.dispatch({ type: LOG_OUT });
         }
         return Promise.reject(error);
     }
