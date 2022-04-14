@@ -8,9 +8,11 @@ import React, { useEffect } from "react";
 import { getProductHotRequest } from '../../actions/products.action';
 import { getPostRequest } from '../../actions/posts.action';
 import { categories } from './data';
+import { useTranslation } from "react-i18next";
 
 
 const Home = () => {
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const { hotProducts } = useSelector((state) => state.products);
     const { posts } = useSelector((state) => state.posts)
@@ -29,8 +31,8 @@ const Home = () => {
             <div className='advertisement'>
                 <div className='container'>
                     <div className='home__title'>
-                        <span className='text__title text__title--bold'>FREE SHIPPING <span className='text__title'>FOR ORDERS OVER $49</span></span>
-                        <span className='text__title--gray mt-2'>Full width banner about GEMSHOP</span>
+                        <span className='text__title text__title--bold'>{t("FREE SHIPPING")}<span className='text__title ms-2'>{t("FOR ORDERS OVER $49")}</span></span>
+                        <span className='text__title--gray mt-2'>{t("Full width banner about GEMSHOP")}</span>
                     </div>
                 </div>
             </div>
@@ -47,8 +49,8 @@ const Home = () => {
             </div>
             <div className='home__hot-product container'>
                 <div className='home__title'>
-                    <span className='text__title text__title--bold'>HOT VOUCHERS</span>
-                    <span className='text__title--gray mt-2'>Over 500 new pieces every week</span>
+                    <span className='text__title text__title--bold'>{t("HOT VOUCHERS")}</span>
+                    <span className='text__title--gray mt-2'>{t("Over 500 new pieces every week")}</span>
                 </div>
                 <div className='product-list row'>
                     {
@@ -62,14 +64,14 @@ const Home = () => {
                     }
                 </div>
                 <div className='btn__see-more'>
-                    <button className='button button-base'>SEE MORE HOT VOUCHERS</button>
+                    <button className='button button-base'>{t("SEE MORE HOT VOUCHERS")}</button>
                 </div>
             </div>
             <div className='home__new'>
                 <div className='container'>
                     <div className='home__title'>
-                        <span className='text__title text__title--bold'>NEWS</span>
-                        <span className='text__title--gray mt-2'>Over 500 new pieces every week</span>
+                        <span className='text__title text__title--bold'>{t("NEWS POST")}</span>
+                        <span className='text__title--gray mt-2'>{t("Over 500 new pieces every week")}</span>
                     </div>
                     <div className='product-list row'>
                     {
@@ -84,7 +86,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div className='btn__see-more'>
-                    <button className='button button-base'>SEE MORE HOT PRODUCTS</button>
+                    <button className='button button-base'>{t("SEE MORE NEW POST")}</button>
                 </div>
             </div>
         </div>

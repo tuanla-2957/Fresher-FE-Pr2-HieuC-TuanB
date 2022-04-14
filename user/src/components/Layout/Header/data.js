@@ -2,7 +2,7 @@ export const navLefts = [
     {
         id: 1,
         src: './',
-        name: 'HOME',
+        name: `HOME`,
     },
     {
         id: 2,
