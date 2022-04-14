@@ -1,7 +1,7 @@
 import React from "react";
 import { useTable, usePagination, useRowSelect } from "react-table";
 import FormatDate from "../../../../components/UI/FormatDate";
-
+import { useTranslation } from "react-i18next";
 function Table({ columns, data }) {
   // Use the state and functions returned from useTable to build your UI
   const { getTableProps, getTableBodyProps, headerGroups, prepareRow, page } =
@@ -47,18 +47,19 @@ function Table({ columns, data }) {
 }
 
 function App(props) {
+  const { t } = useTranslation();
   const columns = React.useMemo(
     () => [
       {
-        Header: "Name",
+        Header: `${t("Name")}`,
         accessor: "name",
       },
       {
-        Header: " PayablePrice",
+        Header: `${t("PayablePrice")}`,
         accessor: "payablePrice",
       },
       {
-        Header: " PurchaseQty",
+        Header: `${t("PurchaseQty")}`,
         accessor: "purchaseQty",
       },
     ],

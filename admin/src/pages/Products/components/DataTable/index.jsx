@@ -5,6 +5,7 @@ import { BsArrowBarLeft, BsArrowBarRight } from "react-icons/bs";
 import { useTable, usePagination, useRowSelect } from "react-table";
 import { Link } from "react-router-dom";
 import Button from "../../../../components/UI/Button";
+import { useTranslation } from "react-i18next";
 
 import "./style.scss";
 
@@ -26,6 +27,7 @@ const IndeterminateCheckbox = React.forwardRef(
 );
 
 function Table({ columns, data }) {
+  const { t } = useTranslation();
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
@@ -101,13 +103,13 @@ function Table({ columns, data }) {
           {">>"}
         </Button>{" "}
         <span>
-          Page{" "}
+          {t("Page")}{" "}
           <strong>
             {pageIndex + 1} of {pageOptions.length}
           </strong>{" "}
         </span>
         <span>
-          | Go to page:{" "}
+          | {t("Go to page")}:{" "}
           <input
             type='number'
             defaultValue={pageIndex + 1}
@@ -124,56 +126,55 @@ function Table({ columns, data }) {
 }
 
 function App(props) {
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "Product",
-        columns: [
-          {
-            Header: " Avatar",
-            accessor: "avatar",
-          },
-          {
-            Header: " Name",
-            accessor: "name",
-          },
-          {
-            Header: "Listed Price",
-            accessor: "listedPrice",
-          },
-          {
-            Header: "Discount Price",
-            accessor: "discountPrice",
-          },
-          {
-            Header: "Quantity",
-            accessor: "quantity",
-          },
-          {
-            Header: "Is Hot",
-            accessor: "is_hot",
-          },
-          {
-            Header: "In Slider",
-            accessor: "in_slider",
-          },
-          {
-            Header: "Tags",
-            accessor: "tags",
-          },
-          {
-            Header: "Details",
-            accessor: "update",
-          },
-          {
-            Header: "Delete",
-            accessor: "delete",
-          },
-        ],
-      },
-    ],
-    []
-  );
+  const { t } = useTranslation();
+  const columns = [
+    {
+      Header: `${t("Product")}`,
+      columns: [
+        {
+          Header: `${t("Avatar")}`,
+          accessor: "avatar",
+        },
+        {
+          Header: `${t("Name")}`,
+          accessor: "name",
+        },
+        {
+          Header: `${t("Listed Price")}`,
+          accessor: "listedPrice",
+        },
+        {
+          Header: `${t("Discount Price")}`,
+          accessor: "discountPrice",
+        },
+        {
+          Header: `${t("Quantity")}`,
+          accessor: "quantity",
+        },
+        {
+          Header: `${t("Is Hot")}`,
+          accessor: "is_hot",
+        },
+        {
+          Header: `${t("In slider")}`,
+          accessor: "in_slider",
+        },
+        {
+          Header: `${t("Tags")}`,
+          accessor: "tags",
+        },
+        {
+          Header: `${t("Update")}`,
+          accessor: "update",
+        },
+        {
+          Header: `${t("Delete")}`,
+          accessor: "delete",
+        },
+      ],
+    },
+  ];
+
   const makeData = (data) => {
     return data.map((product) => {
       return {
@@ -196,7 +197,7 @@ function App(props) {
         in_slider: product.in_slider ? <BsFillCheckCircleFill /> : "",
         update: (
           <Button className='table-btn--detail'>
-            <Link to={`/products/${product._id}`}>Details</Link>
+            <Link to={`/products/${product._id}`}>{t("Details")}</Link>
           </Button>
         ),
         delete: (
@@ -204,7 +205,7 @@ function App(props) {
             className='table-btn--delete'
             onClick={() => props.deleteProduct(product._id)}
           >
-            Delete
+            {t("Delete")}
           </Button>
         ),
       };

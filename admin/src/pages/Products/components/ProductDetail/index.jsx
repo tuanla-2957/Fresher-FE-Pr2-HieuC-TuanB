@@ -8,8 +8,7 @@ import {
   updateProductsRequest,
 } from "../../../../actions";
 import axios from "../../../../helper/axios";
-import Input from "../../../../components/UI/Input";
-import { BsXSquare, BsSearch } from "react-icons/bs";
+import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -36,6 +35,7 @@ const schema = yup
   .required();
 
 export default function ProductDetails() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { selectedProduct, loading } = useSelector((state) => state.products);
 
@@ -143,7 +143,7 @@ export default function ProductDetails() {
       {selectedProduct.product && (
         <form className='productdetail' onSubmit={handleSubmit(updateProduct)}>
           <div className='product-image'>
-            <h4>Avatar</h4>
+            <h4>{t("Avatar")}</h4>
             <input
               type='file'
               className='custom-file-input'
@@ -155,7 +155,7 @@ export default function ProductDetails() {
             </div>
           </div>
           <div className='product-image'>
-            <h4>Photos</h4>
+            <h4>{t("Photos")}</h4>
             <input
               type='file'
               className='custom-file-input'
@@ -173,7 +173,7 @@ export default function ProductDetails() {
             </div>
           </div>
           <label>
-            Name
+            {t("Name")}
             <input
               defaultValue={selectedProduct.product.name}
               {...register("name")}
@@ -182,7 +182,7 @@ export default function ProductDetails() {
           </label>
           <div className='product-checkbox'>
             <label>
-              Is hot
+              {t("Is Hot")}
               <input
                 type='checkbox'
                 checked={isHot ? true : false}
@@ -193,7 +193,7 @@ export default function ProductDetails() {
               />
             </label>
             <label>
-              Inslider
+              {t("In slider")}
               <input
                 type='checkbox'
                 checked={inSlider ? true : false}
@@ -204,7 +204,7 @@ export default function ProductDetails() {
           </div>
 
           <label>
-            List Price
+            {t("Listed Price")}
             <input
               defaultValue={selectedProduct.product.listedPrice}
               {...register("listedPrice")}
@@ -213,7 +213,7 @@ export default function ProductDetails() {
           </label>
 
           <label>
-            Discount Price
+            {t("Discount Price")}
             <input
               defaultValue={selectedProduct.product.discountPrice}
               {...register("discountPrice")}
@@ -222,7 +222,7 @@ export default function ProductDetails() {
           </label>
 
           <label>
-            Quantity
+            {t("Quantity")}
             <input
               defaultValue={selectedProduct.product.quantity}
               {...register("quantity")}
@@ -231,10 +231,10 @@ export default function ProductDetails() {
           </label>
           <div>
             <label>
-              Add tag
+              {t("Add")} {t("Tags")}
               <div>
                 <input type='text' ref={tagRef} />
-                <Button onClick={handleTagsInput}>Add </Button>
+                <Button onClick={handleTagsInput}>{t("Add")} </Button>
               </div>
             </label>
 
@@ -247,14 +247,14 @@ export default function ProductDetails() {
             </div>
           </div>
           <div className='product-description'>
-            <label>Description</label>
+            <label>{t("Description")}</label>
             <textarea
               defaultValue={selectedProduct.product.description}
               {...register("description")}
             />
           </div>
 
-          <Button type='submit'>Update</Button>
+          <Button type='submit'>{t("Update")}</Button>
         </form>
       )}
     </Layout>
