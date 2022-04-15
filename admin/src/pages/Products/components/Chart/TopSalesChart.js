@@ -71,7 +71,7 @@ const TopSalesChart = (props) => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey='totalSale' barSize={15} fill='#413ea0' />
+          <Bar dataKey='totalSale' barSize={15} fill='#55BCC9' />
           <Line type='monotone' dataKey='quantity' stroke='#ff7300' />
         </ComposedChart>
       </ResponsiveContainer>
