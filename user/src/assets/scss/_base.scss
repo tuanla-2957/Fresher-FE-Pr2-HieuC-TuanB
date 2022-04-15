@@ -32,12 +32,10 @@ html {
   color: $text-gray2;
 }
 
-.text__title--bold {
-  font-weight: 700;
-}
-
-.text__title--gray {
-  font-size: $fs-3xl;
-  font-weight: 400;
-  color: $text-gray2;
+.text-form-danger{
+  font-size: $fs-xs ;
+  font-weight: inherit ;
+  margin-left: 10px;
+  margin-top: 5px;
+  color: red;
 }

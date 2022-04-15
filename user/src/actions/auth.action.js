@@ -1,68 +1,51 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE } from "./constant";
-import axios from "../helper/axios";
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, KEEP_LOGIN, LOG_OUT, REGISTER_REQUEST, REGISTER_SUCCESS, REGISTER_FAILURE } from "./constant";
 
-export const login = (user) => {
-    return async (dispatch) => {
-        dispatch({ type: LOGIN_REQUEST });
-        try {
-            const res = await axios.post("/user/login", { ...user });
-            if (res.status === 200) {
-                const { token, user } = res.data;
-                localStorage.setItem("token", token);
-                localStorage.setItem("user", JSON.stringify(user));
-                dispatch({
-                    type: LOGIN_SUCCESS,
-                    payload: { token, user },
-                });
-            }
-        } catch (err) {
-            const { error } = err.response.data;
-            console.log(error);
-            dispatch({
-                type: LOGIN_FAILURE,
-                payload: { error },
-            });
-        }
+export const loginSuccess = (user) => {
+    return {
+        type: LOGIN_SUCCESS,
+        payload: user,
     };
 };
 
-export const isUserLoggedIn = () => {
-    return async (dispatch) => {
-        const token = localStorage.getItem("token");
-
-        if (token) {
-            const user = JSON.parse(localStorage.getItem("user"));
-            dispatch({
-                type: LOGIN_SUCCESS,
-                payload: {
-                    token,
-                    user,
-                },
-            });
-        } else {
-            dispatch({
-                type: LOGIN_FAILURE,
-                payload: { error: null },
-            });
-        }
+export const loginFailure = (error) => {
+    return {
+        type: LOGIN_FAILURE,
+        payload: error,
     };
 };
 
-export const logout = () => {
-    return async (dispatch) => {
-        dispatch({ type: LOGOUT_REQUEST });
-        const res = await axios.post("/admin/logout");
+export const loginRequest = (user) => {
+    return {
+        type: LOGIN_REQUEST,
+        payload: user,
+    };
+};
 
-        if (res.status === 200) {
-            localStorage.clear();
-            dispatch({
-                type: LOGOUT_SUCCESS,
-            });
-        } else {
-            dispatch({
-                type: LOGOUT_FAILURE,
-                payload: { error: res.data.error },
-            });
-        }
+export const isUserLoggedIn = () => ({
+    type: KEEP_LOGIN,
+});
+
+export const logOut = () => ({
+    type: LOG_OUT,
+});
+
+export const registerSuccess = (user) => {
+    return {
+        type: REGISTER_SUCCESS,
+        payload: user,
+    };
+};
+
+export const registerFailure = (error) => {
+    return {
+        type: REGISTER_FAILURE,
+        payload: error,
+    };
+};
+
+export const registerRequest = (user) => {
+    return {
+        type: REGISTER_REQUEST,
+        payload: user,
     };
 };

@@ -1,0 +1,8 @@
+@import '../../../../assets/scss/variable';
+
+.error__message {
+    position: absolute;
+    color: $red-color;
+    font-size: $fs-xs;
+    left: 20px;
+}
