@@ -2,6 +2,7 @@ import React from 'react';
 import './Button.scss';
 import { Link } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 
 
@@ -15,11 +16,17 @@ export const AddToCart = () => {
     );
 };
 
-export const Tag = ({title}) => {
+export const Tag = (props) => {
+    const { title, handleFilterTag } = props
+    const {  selectTags  } = useSelector((state) => state.products);
     return (
-        <Link to='./category' className='button button-tag'>
+        <button className={selectTags.includes(title) ? "button button-tag button-tag--active" : "button button-tag"} onClick={() => {
+            if (handleFilterTag) {
+                handleFilterTag(title)
+            }
+        }}>
             <span>{title}</span>
-        </Link>
+        </button>
     );
 };
 

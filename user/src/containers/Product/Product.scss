@@ -1,0 +1,48 @@
+@import "../../assets/scss/_variable.scss";
+@import "../../assets/scss/mixins/mixins";
+
+.products {
+  padding-top: 130px;
+  padding-bottom: 130px;
+  width: 100%;
+
+  &__top {
+    @include flex($justify: space-between, $align: start);
+  }
+
+  &-wrapper {
+    // width: 100%;
+    // @include flex($justify: center, $align: start);
+  }
+
+  &__filter {
+    position: fixed;
+    left: 0;
+    top: 130px;
+    padding: 25px 20px 20px 10px;
+    width: 270px;
+    bottom: 400px;
+
+    .filter {
+      padding: 25px 0;
+      border-bottom: 1px solid $text-gray2;
+      width: 100%;
+
+      &__title {
+        font-weight: 700;
+        margin-bottom: 20px;
+        font-style: normal;
+        text-transform: uppercase;
+      }
+    }
+
+    .button-tag{
+      margin: 5px 5px;
+    }
+  }
+
+  &__content {
+    padding-top: 50px;
+    padding-left: 270px;
+  }
+}

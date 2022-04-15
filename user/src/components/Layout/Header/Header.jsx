@@ -79,7 +79,7 @@ const Header = () => {
                 <div className='header-mid'>
                     <div className='container'>
                         <div className='header-mid-wrapper row'>
-                            <div className='header__info col-auto'>
+                            <div className='header__info col-auto d-none d-md-flex'>
                                 <div className='header__contact'>
                                     <i className="fas fa-phone"></i>
                                 </div>

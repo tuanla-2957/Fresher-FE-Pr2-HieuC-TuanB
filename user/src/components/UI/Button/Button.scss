@@ -24,14 +24,19 @@
     transition: all .3s;
 }
 
+.button-tag--active {
+    background-color: $text-gray1;
+    border: 1px solid $text-gray1;
+}
+
 .button-tag + .button-tag {
     margin-left: 10px;
 }
 
 .button-tag:hover {
-    border: 1px solid $text-black;
+    border: 1px solid $text-gray1;
     color: $text-white;
-    background-color: $text-black;
+    background-color: $text-gray1;
 }
 
 .button-more {

@@ -7,7 +7,10 @@
     background-color: $bg-white;
     position: relative;
     border-radius: 50px;
-
+    
+    input {
+        width: 94%;
+    }
 
     .button-search {
         outline: none;
