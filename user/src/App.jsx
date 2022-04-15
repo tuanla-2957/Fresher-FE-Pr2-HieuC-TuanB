@@ -1,15 +1,19 @@
-import React from 'react';
-import Header from './components/Layout/Header/Header';
-import Footer from './components/Layout/Footer/Footer';
+import React from "react";
+import Header from "./components/Layout/Header/Header";
+import Footer from "./components/Layout/Footer/Footer";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { isUserLoggedIn } from './actions/auth.action';
-import { BrowserRouter as Router , Route, Routes } from 'react-router-dom'
-import Home from './containers/Home/Home';
-import AboutUs from './containers/About-us/AboutUs';
-import Product from './containers/Product/Product';
-import Post from './containers/Post/Post';
-import Blog from './containers/Blog/Blog';
+import { isUserLoggedIn } from "./actions/auth.action";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./containers/Home/Home";
+import AboutUs from "./containers/About-us/AboutUs";
+import Product from "./containers/Product/Product";
+import Post from "./containers/Post/Post";
+import Blog from "./containers/Blog/Blog";
+import Profile from "./containers/Profile/Profile";
+import ProfileOrder from "./containers/Profile/pages/ProfileOrder/ProfileOrder";
+import ProfileAccount from "./containers/Profile/pages/ProfileAccount/ProfileAccount";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,7 +26,7 @@ function App() {
   }, [isAuthenticate]);
 
   return (
-    <div className="App">
+    <div className='App'>
       <Router>
         <Header />
         <Routes>
@@ -31,6 +35,11 @@ function App() {
           <Route path='/product' element={<Product />} />
           <Route path='/post' element={<Post />} />
           <Route path='/blog' element={<Blog />} />
+          <Route element={<PrivateRoute />}>
+            <Route path='/profile/dashboard' element={<Profile />} />
+            <Route path='/profile/order' element={<ProfileOrder />} />
+            <Route path='/profile/account' element={<ProfileAccount />} />
+          </Route>
         </Routes>
         <Footer />
       </Router>

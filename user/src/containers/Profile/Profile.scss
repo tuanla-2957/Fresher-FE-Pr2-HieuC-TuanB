@@ -1,0 +1,68 @@
+@import "../../assets/scss/variable";
+@import "../../assets/scss/mixins/mixins";
+
+.profile {
+  padding-top: 130px;
+
+  &-banner {
+    @include flex($justify: center, $align: center, $direction: column);
+    min-height: 200px;
+    background-color: $black-color;
+
+    &__title {
+      color: $gray-color2;
+      font-weight: 300;
+      font-size: $fs-6xl;
+    }
+  }
+
+  .profile-main {
+    @include grid($column: 1fr 4fr, $col-gap: 32px);
+    padding: 30px 10%;
+
+    @include respond-to(small) {
+    }
+
+    .profile-nav {
+      @include flex($justify: flex-start, $align: flex-start, $direction: column);
+
+      @include respond-to(small) {
+        grid-column: 1 / -1;
+      }
+
+      height: fit-content;
+
+      &__item {
+        width: 100%;
+        cursor: pointer;
+        border-radius: 5px;
+
+        &:hover {
+          background-color: $gray-color2;
+
+          a {
+            color: $other-color;
+          }
+        }
+      }
+
+      a {
+        display: block;
+        font-weight: bold;
+        padding: 10px;
+        font-size: $fs-2xl;
+      }
+
+      a.active {
+        color: $other-color;
+        background-color: $gray-color2;
+      }
+    }
+
+    .profile-content {
+      @include respond-to(small) {
+        grid-column: 1 / -1;
+      }
+    }
+  }
+}
