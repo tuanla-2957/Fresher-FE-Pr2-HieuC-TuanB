@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import InputSearch from '../../UI/Input/Input-search/InputSearch';
 import Navbar from '../../UI/Navbar/Navbar';
 import { navLefts, navRights, infos } from './data.js'
@@ -10,7 +10,8 @@ import { useToggle } from '../../../features/customHook/useToggle';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../../actions/auth.action';
 import Register from '../../Register/Register';
-import { getDataFromLocalStorage } from '../../../features/getDataFromLocalStorage';
+import { useTranslation } from "react-i18next";
+import { getDataFromLocalStorage } from '../../../utils/helpers';
 
 const Header = () => {
     const { state: showLogin, set: setLogin } = useToggle()
@@ -19,21 +20,18 @@ const Header = () => {
     const user = getDataFromLocalStorage('user')
     const dispatch = useDispatch();
 
-    console.log("user___________________-", user)
-
-    const handleLoginClose = () => {
-        setLogin(false)
-    }
-
-    const handleRegisterClose = () => {
-        setRegister(false)
-    }
+    const [language, setLanguage] = useState("en");
+    const { t, i18n } = useTranslation();
 
     const logOutOnClick = () => {
         dispatch(logOut())
         localStorage.removeItem("user");
         localStorage.removeItem("token");
         window.location.reload();
+    }
+
+    const handleLanguage = (value) => {
+        setLanguage(value);
     }
 
     useEffect(() => {
@@ -43,12 +41,15 @@ const Header = () => {
         }
     }, [isAuthenticate])
 
+    useEffect(() => {
+        i18n.changeLanguage(language);
+    }, [language])
 
     return (
         <header className="header fixed-top shadow">
             <div className='header-wrapper'>
-                <Login isOpen={showLogin} handleClose={handleLoginClose} />
-                <Register isOpen={showRegister} handleClose={handleRegisterClose} />
+                <Login isOpen={showLogin} handleClose={() => setLogin(false)} />
+                <Register isOpen={showRegister} handleClose={() => setRegister(false)} />
                 <div className='header-top'>
                     <div className='container'>
                         <div className='header-top-wrapper row'>
@@ -60,13 +61,13 @@ const Header = () => {
                             </div>
                             <div className='header__right col-auto'>
                                 <div className='language px-3'>
-                                    <span>VI</span>
+                                    {language === 'en' ? 'EN' : 'VI'}
                                     <i className="fas fa-angle-down ms-1"></i>
                                     <ul className='language__option shadow'>
-                                        <li className='language__item'>
+                                        <li className='language__item' onClick={() => handleLanguage('vi')}>
                                             VI
                                         </li>
-                                        <li className='language__item'>
+                                        <li className='language__item' onClick={() => handleLanguage('en')}>
                                             EN
                                         </li>
                                     </ul>
@@ -82,7 +83,7 @@ const Header = () => {
                                 <div className='header__contact'>
                                     <i className="fas fa-phone"></i>
                                 </div>
-                                <div className='header__favourite'>
+                                <div className='header__favorite'>
                                     <i className="far fa-heart"></i>
                                 </div>
                             </div>
@@ -102,10 +103,10 @@ const Header = () => {
                                             <span className='text__login'>Hi {user.userName}</span>
                                             <ul className='account__option shadow'>
                                                 <li className='account__item'>
-                                                    Profile
+                                                    {t("Profile")}
                                                 </li>
                                                 <li className='account__item' onClick={logOutOnClick}>
-                                                    Logout
+                                                    {t("Logout")}
                                                 </li>
                                             </ul>
                                         </>
@@ -114,10 +115,10 @@ const Header = () => {
                                             <i className="far fa-user"></i>
                                             <ul className='account__option shadow'>
                                                 <li className='account__item' onClick={() => setLogin(true)}>
-                                                    Login
+                                                    {t("Login")}
                                                 </li>
                                                 <li className='account__item' onClick={() => setRegister(true)}>
-                                                    Register
+                                                    {t("Register")}
                                                 </li>
                                             </ul>
                                         </>
