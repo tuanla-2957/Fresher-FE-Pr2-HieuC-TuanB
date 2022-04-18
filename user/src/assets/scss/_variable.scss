@@ -28,21 +28,21 @@ $fs-7xl: var(--fs-7xl);
 
 // color
 $text-black: #212121;
-$text-gray1: #9E9E9E;
+$text-gray1: #9e9e9e;
 $text-gray2: #838383;
 $text-white: #ffffff;
 
 $black-color: #212121;
 $green-color1: #82b440;
 $green-color2: #7aa93c;
-$other-color: #D7B398;
+$other-color: #d7b398;
 $gray-color: #99a9b5;
-$gray-color2: #F4F4F4FF;
-$gray-color3: #9E9E9EFF;
+$gray-color2: #f4f4f4ff;
+$gray-color3: #9e9e9eff;
 $blue-color: #00bcd4;
 $red-color: #f44336;
 
-$hover-color: #D7B398;
+$hover-color: #d7b398;
 
 //line height
 $lh-xs: 0.75rem;
@@ -61,7 +61,7 @@ $ff-roboto: "Roboto", sans-serif;
 $ff-opensans: "Open Sans", sans-serif;
 
 //background
-$bg-header: #F8F5F2;
+$bg-header: #f8f5f2;
 $bg-footer: #212121;
 $bg-white: #ffffff;
 $bg-black: #000000;
@@ -78,7 +78,7 @@ $z-drawer: 200;
 // Responsive Variables
 $breakpoints: (
   "small": (
-    min-width: 768px,
+    max-width: 768px,
   ),
   "medium": (
     max-width: 992px,

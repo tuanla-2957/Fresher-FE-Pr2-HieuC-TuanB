@@ -1,10 +1,4 @@
-@mixin flex(
-  $justify: start,
-  $align: start,
-  $direction: row,
-  $wrap: wrap,
-  $gap: 0
-) {
+@mixin flex($justify: start, $align: start, $direction: row, $wrap: wrap, $gap: 0) {
   display: flex;
   justify-content: $justify;
   align-items: $align;
@@ -46,5 +40,16 @@
   @else {
     @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
         + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+@mixin grid($column, $col-gap: 0, $row-gap: 0) {
+  display: grid;
+  grid-template-columns: $column;
+  @if $col-gap != 0 {
+    column-gap: $col-gap;
+  }
+  @if $row-gap != 0 {
+    row-gap: $row-gap;
   }
 }
