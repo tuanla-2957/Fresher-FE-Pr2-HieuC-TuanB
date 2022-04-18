@@ -28,5 +28,11 @@
     "FOLLOW US": "FOLLOW US",
     "TO GET A DISCOUNT": "TO GET A DISCOUNT",
     "Add to cart": "Add to cart",
-    "search voucher...": "search voucher..."
+    "search voucher...": "search voucher...",
+    "FILTER BY PRICE": "FILTER BY PRICE",
+    "FILTER BY TAG": "FILTER BY TAG",
+    "Filter": "Filter",
+    "Clear filter": "Clear filter",
+    "Min Price": "Min Price",
+    "Max Price": "Max Price"
 }
