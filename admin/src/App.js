@@ -24,7 +24,7 @@ function App() {
   }, [isAuthenticate]);
 
   return (
-    <div class='App'>
+    <div className='App'>
       <Routes>
         <Route element={<PrivateRoute />}>
           <Route path='/' element={<Home />} />

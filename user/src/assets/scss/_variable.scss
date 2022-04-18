@@ -11,6 +11,7 @@
   --fs-5xl: calc(1.75rem / var(--ratio));
   --fs-6xl: calc(1.875rem / var(--ratio));
   --fs-7xl: calc(2rem / var(--ratio));
+  --fs-8xl: calc(2.25rem / var(--ratio));
 }
 
 //Font Size
@@ -25,6 +26,7 @@ $fs-4xl: var(--fs-4xl);
 $fs-5xl: var(--fs-5xl);
 $fs-6xl: var(--fs-6xl);
 $fs-7xl: var(--fs-7xl);
+$fs-8xl: var(--fs-8xl);
 
 // color
 $text-black: #212121;
@@ -39,6 +41,7 @@ $other-color: #d7b398;
 $gray-color: #99a9b5;
 $gray-color2: #f4f4f4ff;
 $gray-color3: #9e9e9eff;
+$gray-color4: #e6e6e6;
 $blue-color: #00bcd4;
 $red-color: #f44336;
 

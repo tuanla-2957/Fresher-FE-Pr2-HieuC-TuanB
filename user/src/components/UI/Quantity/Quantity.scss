@@ -1,0 +1,54 @@
+@import "../../../assets/scss/variable";
+@import "../../../assets/scss/mixins/mixins";
+
+.quantity {
+  @include flex($justify: center, $align: center);
+  width: 122px;
+  border: 1px solid $gray-color4;
+
+  .button__trans {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    color: $text-gray1;
+    border: none;
+  }
+
+  .button__trans::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 25px;
+    background-color: $gray-color4;
+  }
+
+  .minus::before {
+    right: 0;
+  }
+
+  .plus::before {
+    left: 0;
+  }
+
+  .input__quantity {
+    border: none;
+    outline: none;
+    background: transparent;
+    margin: 0;
+    width: 40px;
+    height: 40px;
+    padding: 0 5px;
+    line-height: 40px;
+    font-size: $fs-l;
+    color: $text-gray1;
+    text-align: center;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

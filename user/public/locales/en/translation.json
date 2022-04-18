@@ -55,5 +55,19 @@
     "Date Of Birth": "Date Of Birth",
     "Phone": "Phone",
     "Update": "Update",
-    "Total": "Total"
+    "Total": "Total",
+    "QUANTITY": "QUANTITY",
+    "SUBTOTAL": "SUBTOTAL",
+    "More product...": "More product...",
+    "Click here": "Click here",
+    "UPDATE CART": "UPDATE CART",
+    "CART TOTALS": "CART TOTALS",
+    "Subtotal": "Subtotal",
+    "Shipping": "Shipping",
+    "Free shipping": "Free shipping",
+    "PROCEED TO CHECKOUT": "PROCEED TO CHECKOUT",
+    "SHOPPING CART": "SHOPPING CART",
+    "CHECKOUT": "CHECKOUT",
+    "ORDER COMPLETE": "ORDER COMPLETE",
+    "PLACE ORDER": "PLACE ORDER"
 }
