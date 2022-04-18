@@ -57,14 +57,6 @@ export default function ProfileAccount() {
     dispatch(updateUserRequest(updateUser));
   };
 
-  const renderImage = () => {
-    if (imgUrl) {
-      return <img className='avatar' alt='avatar' src={imgUrl} />;
-    } else {
-      return <img className='avatar' alt='avatar' src={DefaultAvatar} />;
-    }
-  };
-
   return (
     <Profile>
       <>
@@ -77,13 +69,20 @@ export default function ProfileAccount() {
             <h3>{t("ACCOUNT DETAILS")}</h3>
             <div className='profile-avatar'>
               <label className='custom-file-upload'>
-                <div>{renderImage()}</div>
+                <div>
+                  <img
+                    className='avatar'
+                    alt='avatar'
+                    src={imgUrl || DefaultAvatar}
+                  />
+                </div>
                 <input
                   type='file'
                   multiple
                   onChange={handleFileInput}
                   ref={imageInputRef}
                 />
+                <i className=' fa-solid fa-pen-to-square'></i>
               </label>
             </div>
             <TextField
