@@ -38,20 +38,24 @@
     }
 
     &__status {
+      padding: 5px 8px;
+      border-radius: 5px;
+
       &--ordered {
-        color: $other-color;
+        background-color: $other-color;
       }
 
       &--in-progress {
-        color: $blue-color;
+        background-color: $blue-color;
       }
 
       &--completed {
-        color: $green-color1;
+        background-color: $green-color1;
       }
 
-      &--cancel {
-        color: $text-gray2;
+      &--cancelled {
+        background-color: $text-gray2;
+        color: $gray-color2;
       }
     }
 
@@ -71,6 +75,14 @@
 
     &__footer {
       @include flex($justify: flex-end, $align: center, $gap: 15px);
+
+      button {
+        margin-right: auto;
+      }
     }
   }
+}
+
+.order-pagination {
+  @include flex($justify: center, $align: center);
 }
