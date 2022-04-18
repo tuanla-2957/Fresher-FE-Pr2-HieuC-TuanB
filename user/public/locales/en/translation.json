@@ -34,5 +34,26 @@
     "Filter": "Filter",
     "Clear filter": "Clear filter",
     "Min Price": "Min Price",
-    "Max Price": "Max Price"
+    "Max Price": "Max Price",
+    "PASSWORD" : "PASSWORD",
+    "Change Password": "Change Password",
+    "Current Password" : "Current Password",
+    "New Password": "New Password",
+    "Confirm Password": "Confirm Password",
+    "You will be logout after success change password": "You will be logout after success change password",
+    "Confirm": "Confirm",
+    "MY ACCOUNT": "MY ACCOUNT",
+    "Dash board": "Dash board",
+    "Order": "Order",
+    "Account detail": "Account-detail",
+    "Password": "Password",
+    "ACCOUNT DETAILS": "ACCOUNT DETAILS",
+    "Email": "Email",
+    "Username": "Username",
+    "FirstName": "FirstName",
+    "LastName": "LastName",
+    "Date Of Birth": "Date Of Birth",
+    "Phone": "Phone",
+    "Update": "Update"
+
 }
