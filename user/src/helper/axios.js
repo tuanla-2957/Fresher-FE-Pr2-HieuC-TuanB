@@ -25,11 +25,6 @@ axiosInstance.interceptors.response.use(
         return res;
     },
     (error) => {
-        const { status } = error.response;
-        if (status === 500) {
-            localStorage.clear();
-            store.dispatch({ type: LOG_OUT });
-        }
         return Promise.reject(error);
     }
 );

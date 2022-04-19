@@ -12,6 +12,7 @@
   cursor: pointer;
   font-weight: 400;
   border-radius: 4px;
+  transition: all 0.3s;
 }
 
 .button-base {
@@ -20,6 +21,18 @@
 
 .button-base:hover {
   background-color: $gray-color;
+}
+
+.button-other {
+  background-color: $other-color;
+  border: 2px solid $other-color;
+  font-weight: 700;
+  width: 100%;
+}
+
+.button-other:hover {
+  background-color: $bg-white;
+  color: $other-color;
 }
 
 .button--success {
@@ -31,5 +44,13 @@
 }
 
 .button--danger {
+  background-color: $bg-white;
+  border: 2px solid  $red-color;
+  color:  $red-color;
+  font-weight: 700;
+}
+
+.button--danger:hover {
   background-color: $red-color;
+  color: $text-white;
 }

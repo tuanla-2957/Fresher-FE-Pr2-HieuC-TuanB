@@ -2,8 +2,18 @@ import React from 'react';
 import './Product.scss'
 import { AddToCart, Tag } from '../UI/Button/Button.js'
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addCartRequest } from '../../actions/cart.action'
 
 const Product = ({ product }) => {
+    const dispatch = useDispatch();
+    const handleAddToCart = (id) => {
+        const cart = {
+            productId: id,
+            quantity: 1
+        }
+        dispatch(addCartRequest(cart))
+    }
     return (
         <div className='product'>
             <div className="product-wrapper card">
@@ -28,7 +38,7 @@ const Product = ({ product }) => {
                             <span className='price__old me-2'>${product.listedPrice}</span>
                             <span className='price__new'>${product.discountPrice}</span>
                         </div>
-                        <div className='card__button'>
+                        <div className='card__button' onClick={() => handleAddToCart(product._id)}>
                             <AddToCart />
                         </div>
                     </div>

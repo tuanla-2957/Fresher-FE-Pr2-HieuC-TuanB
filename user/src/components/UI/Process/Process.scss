@@ -1,0 +1,23 @@
+@import "../../../assets/scss/variable";
+@import "../../../assets/scss/mixins/mixins";
+
+.process {
+  padding: 80px 0;
+  background-color: $gray-color2;
+
+  &__title {
+    @include flex($justify: space-between, $align: center);
+    line-height: 50px;
+    font-size: $fs-8xl;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+
+    i:last-child {
+      display: none;
+    }
+  }
+
+  &__text--active {
+    font-weight: 700;
+  }
+}
