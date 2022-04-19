@@ -1,6 +1,19 @@
-import { GET_PRODUCT_HOT_REQUEST, GET_PRODUCT_HOT_FAILURE, GET_PRODUCT_HOT_SUCCESS, GET_PRODUCT_REQUEST, GET_PRODUCT_FAILURE, GET_PRODUCT_SUCCESS, CHANGE_FILTER_PRODUCT, SELECT_PRODUCT_TAG } from '../actions/constant'
+import {
+    GET_PRODUCT_HOT_REQUEST,
+    GET_PRODUCT_HOT_FAILURE,
+    GET_PRODUCT_HOT_SUCCESS,
+    GET_PRODUCT_REQUEST,
+    GET_PRODUCT_FAILURE,
+    GET_PRODUCT_SUCCESS,
+    GET_PRODUCT_BY_ID_REQUEST,
+    GET_PRODUCT_BY_ID_FAILURE,
+    GET_PRODUCT_BY_ID_SUCCESS,
+    CHANGE_FILTER_PRODUCT,
+    SELECT_PRODUCT_TAG
+} from '../actions/constant'
 const initialState = {
     products: [],
+    product: null,
     hotProducts: [],
     query: {
         page: 1,
@@ -59,18 +72,38 @@ const productsReducer = (state = initialState, action) => {
                 loading: false,
             };
             break;
+        case GET_PRODUCT_BY_ID_REQUEST:
+            state = {
+                ...state,
+                loading: true,
+            };
+            break;
+        case GET_PRODUCT_BY_ID_SUCCESS:
+            state = {
+                ...state,
+                product: action.payload,
+                loading: false,
+            };
+            break;
+        case GET_PRODUCT_BY_ID_FAILURE:
+            state = {
+                ...state,
+                error: action.payload.error,
+                loading: false,
+            };
+            break;
         case CHANGE_FILTER_PRODUCT:
             state = {
                 ...state,
-                query: { ...state.query , ...action.payload }
+                query: { ...state.query, ...action.payload }
             }
             break
         case SELECT_PRODUCT_TAG:
-        state = {
-            ...state,
-            selectTags: action.payload
-        }
-        break
+            state = {
+                ...state,
+                selectTags: action.payload
+            }
+            break
         default:
             return state
     }

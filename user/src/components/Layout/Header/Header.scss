@@ -133,4 +133,8 @@
     font-size: $fs-s;
     cursor: pointer;
   }
+
+  &__cart {
+    position: relative;
+  }
 }

@@ -16,6 +16,7 @@ import ProfileAccount from "./containers/Profile/pages/ProfileAccount/ProfileAcc
 import PrivateRoute from "./components/PrivateRoute";
 import ProfilePassword from "./containers/Profile/pages/ProfilePassword/ProfilePassword";
 import ShopCart from './containers/Shop-cart/ShopCart';
+import ProductDetail from "./components/Product/ProductDetail/ProductDetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/about-us' element={<AboutUs />} />
           <Route path='/product' element={<Product />} />
+          <Route path='/product/:productId' element={<ProductDetail />} />
           <Route path='/post' element={<Post />} />
           <Route path='/blog' element={<Blog />} />
           <Route element={<PrivateRoute />}>
