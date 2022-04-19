@@ -110,7 +110,9 @@ const Header = () => {
                     <>
                       <span className='text__login'>Hi {user.userName}</span>
                       <ul className='account__option shadow'>
-                        <li className='account__item'>{t("Profile")}</li>
+                        <li className='account__item'>
+                          <Link to='/profile/account'> {t("Profile")}</Link>
+                        </li>
                         <li className='account__item' onClick={logOutOnClick}>
                           {t("Logout")}
                         </li>

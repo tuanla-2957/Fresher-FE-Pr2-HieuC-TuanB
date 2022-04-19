@@ -1,0 +1,114 @@
+@import "../../../assets/scss/variable";
+@import "../../../assets/scss/mixins/mixins";
+
+:root {
+  --up: 3;
+  --card-margin: 12px;
+  --cardWidth: calc(96vw / var(--up));
+  --carouselWidth: calc(var(--cardWidth) * var(--num));
+  --carouselLeftMargin: calc(2vw - var(--cardWidth));
+
+  @media screen and (max-width: 900px) {
+    /*basically mobile*/
+    --up: 1;
+  }
+}
+
+.carouselwrapper {
+  overflow: hidden;
+  background: $gray-color2;
+  position: relative;
+}
+
+.carousel {
+  width: var(--carouselWidth);
+  margin: 0 0 0 var(--carouselLeftMargin);
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+
+  &.prev {
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.83, 0, 0.17, 1);
+    animation-name: prev;
+  }
+
+  &.next {
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.83, 0, 0.17, 1);
+    animation-name: next;
+  }
+
+  li {
+    padding: 50px;
+    text-align: center;
+    width: calc(var(--cardWidth) - var(--card-margin) * 2);
+    box-sizing: border-box;
+  }
+}
+
+.ui {
+  @include flex($justify: space-between, $align: center);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(100% - var(--card-margin) * 2);
+  padding: var(--card-margin);
+  z-index: 100;
+
+  button {
+    @include flex($justify: center, $align: center);
+    cursor: pointer;
+    background: $gray-color2;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: $text-gray2;
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.25);
+    border: 0;
+    transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &:hover {
+      background: $gray-color;
+    }
+
+    &:focus {
+      outline: none;
+      border: 1px solid rgba(255, 255, 255, 1);
+    }
+  }
+}
+
+.card {
+  border-radius: 4px;
+  background: $gray-color2;
+  border: 1px solid $gray-color2;
+
+  .material-icons {
+    font-size: 4.8rem;
+
+    img {
+      height: 100px;
+      width: 100px;
+    }
+  }
+}
+
+@keyframes next {
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(calc(0px + var(--cardWidth)));
+  }
+}
+
+@keyframes prev {
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(calc(0px - var(--cardWidth)));
+  }
+}
