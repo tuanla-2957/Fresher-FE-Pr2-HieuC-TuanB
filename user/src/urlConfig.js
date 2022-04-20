@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:8000";
+const baseUrl = process.env.REACT_APP_API_URL;
 export const api = `${baseUrl}/api`;
 
 export const generatePublicUrl = (fileName) => {

@@ -138,78 +138,11 @@ const Header = () => {
                     </>
                   )}
                 </div>
-                <div className='header__cart'>
+                <Link className='header__cart' to={"cart"}>
                   <i className='fas fa-shopping-cart'></i>
-                </div>
+                </Link>
                 <div className='header__menu d-lg-none'>
                   <i className='fas fa-bars'></i>
-                  <div className='header-mid'>
-                    <div className='container'>
-                      <div className='header-mid-wrapper row'>
-                        <div className='header__info col-auto d-none d-md-flex'>
-                          <div className='header__contact'>
-                            <i className='fas fa-phone'></i>
-                          </div>
-                          <div className='header__favorite'>
-                            <i className='far fa-heart'></i>
-                          </div>
-                        </div>
-                        <div className='header__nav col-auto'>
-                          <Navbar navList={navLefts} />
-                          <div className='header__logo'>
-                            <img src={Logo} alt='logo' />
-                          </div>
-                          <Navbar navList={navRights} />
-                        </div>
-                        <div className='header__info col-auto'>
-                          <div className='account'>
-                            {user._id ? (
-                              <>
-                                <span className='text__login'>
-                                  Hi {user.userName}
-                                </span>
-                                <ul className='account__option shadow'>
-                                  <li className='account__item'>
-                                    {t("Profile")}
-                                  </li>
-                                  <li
-                                    className='account__item'
-                                    onClick={logOutOnClick}
-                                  >
-                                    {t("Logout")}
-                                  </li>
-                                </ul>
-                              </>
-                            ) : (
-                              <>
-                                <i className='far fa-user'></i>
-                                <ul className='account__option shadow'>
-                                  <li
-                                    className='account__item'
-                                    onClick={() => setLogin(true)}
-                                  >
-                                    {t("Login")}
-                                  </li>
-                                  <li
-                                    className='account__item'
-                                    onClick={() => setRegister(true)}
-                                  >
-                                    {t("Register")}
-                                  </li>
-                                </ul>
-                              </>
-                            )}
-                          </div>
-                          <Link className='header__cart' to={"cart"}>
-                            <i className='fas fa-shopping-cart'></i>
-                          </Link>
-                          <div className='header__menu d-lg-none'>
-                            <i className='fas fa-bars'></i>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
