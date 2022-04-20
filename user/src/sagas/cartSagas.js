@@ -2,7 +2,8 @@ import {
     all,
     call,
     put,
-    takeEvery
+    takeEvery,
+    takeLatest
 } from "redux-saga/effects";
 import {
     ADD_CART_REQUEST,
@@ -13,7 +14,9 @@ import {
     DELETE_CART_SUCCESS,
     DELETE_ALL_CART_REQUEST,
     DELETE_ALL_CART_SUCCESS,
-    ADD_CART_SUCCESS
+    ADD_CART_SUCCESS,
+    POST_ORDER_REQUEST,
+    POST_ORDER_SUCCESS
 } from '../actions/constant';
 import {
     addCartFailure,
@@ -25,7 +28,9 @@ import {
     deleteCartFailure,
     deleteCartSuccess,
     deleteAllCartFailure,
-    deleteAllCartSuccess
+    deleteAllCartSuccess,
+    postOrderFailure,
+    postOrderSuccess
 } from '../actions/cart.action'
 import axiosInstance from '../helper/axios';
 
@@ -58,6 +63,13 @@ const deleteExistedCart = async (payload) => {
 
 const deleteAllExistedCart = async () => {
     await axiosInstance.delete(`cart`);
+};
+
+const postOrder = async (payload) => {
+    const { data: { order } } = await axiosInstance.post("order/user/addOrder", {
+        ...payload,
+    });
+    return order
 };
 
 export function* addNewCart({ payload }) {
@@ -105,6 +117,15 @@ export function* deleteAllCart({ payload }) {
     }
 }
 
+export function* postOderCart({ payload }) {
+    try {
+        const order = yield postOrder(payload);
+        yield put(postOrderSuccess(order));
+    } catch (error) {
+        yield put(postOrderFailure(error));
+    }
+}
+
 export function* onAddingToCart() {
     yield takeEvery(ADD_CART_REQUEST, addNewCart);
     yield takeEvery(ADD_CART_SUCCESS, getCart);
@@ -128,12 +149,18 @@ export function* onDeleteAllCart() {
     yield takeEvery(DELETE_ALL_CART_REQUEST, deleteAllCart);
 }
 
+export function* onPostOrder() {
+    yield takeLatest(POST_ORDER_REQUEST, postOderCart);
+    yield takeEvery(POST_ORDER_SUCCESS, deleteAllCart);
+}
+
 export function* cartsSaga() {
     yield all([
         call(onAddingToCart),
         call(onGettingCart),
         call(onUpdateCart),
         call(onDeleteCart),
-        call(onDeleteAllCart)
+        call(onDeleteAllCart),
+        call(onPostOrder)
     ]);
 }

@@ -2,21 +2,29 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Process from '../../components/UI/Process/Process';
 import './ShopCart.scss';
-import { getCartRequest, updateCartRequest, deleteCartRequest, deleteAllCartRequest } from '../../actions/cart.action'
+import { getCartRequest, updateCartRequest, deleteCartRequest, deleteAllCartRequest, postOrderRequest } from '../../actions/cart.action'
 import Quantity from '../../components/UI/Quantity/Quantity';
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { totalPrice } from '../../utils/helpers';
+import { useNavigate } from 'react-router-dom';
 
 const ShopCart = () => {
     const dispatch = useDispatch();
-    const { carts } = useSelector((state) => state.carts);
+    const { carts, order } = useSelector((state) => state.carts);
     const { t } = useTranslation();
-    const steps= ["SHOPPING CART", "ORDER COMPLETE"]
+    const steps = ["SHOPPING CART", "ORDER COMPLETE"];
+    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(getCartRequest())
     }, [])
+
+    useEffect(() => {
+        if (order) {
+            navigate("/order-result");
+        }
+    }, [order])
 
     const handleQuantity = (quantity, productId) => {
         const data = {
@@ -34,6 +42,24 @@ const ShopCart = () => {
         dispatch(deleteCartRequest({
             productId: productId
         }))
+    }
+
+    const handleOrder = () => {
+        const items = carts.map((cart) => {
+            return {
+                productId: cart.product._id,
+                payablePrice: cart.product.discountPrice,
+                purchaseQty: cart.quantity
+            }
+        })
+        const orders = {
+            items: items,
+            totalAmount: totalPrice(carts),
+            paymentIntentId: process.env.REACT_APP_PAYMENT_ID,
+            paymentStatus: process.env.REACT_APP_PAYMENT_STATUS,
+            paymentType: process.env.REACT_APP_PAYMENT_TYPE
+        }
+        dispatch(postOrderRequest(orders))
     }
 
     return (
@@ -129,7 +155,7 @@ const ShopCart = () => {
                                             ${totalPrice(carts)}
                                         </div>
                                     </div>
-                                    <button className='button button-other'>{t('PLACE ORDER')}</button>
+                                    <button className='button button-other' onClick={handleOrder}>{t('PLACE ORDER')}</button>
                                 </div>
                             </div>
                         </div>

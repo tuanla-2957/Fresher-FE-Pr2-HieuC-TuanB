@@ -14,6 +14,9 @@ import {
     DELETE_ALL_CART_REQUEST,
     DELETE_ALL_CART_SUCCESS,
     DELETE_ALL_CART_FAILURE,
+    POST_ORDER_REQUEST,
+    POST_ORDER_SUCCESS,
+    POST_ORDER_FAILURE,
 } from './constant'
 
 export const getCartRequest = () => {
@@ -115,6 +118,27 @@ export const deleteAllCartSuccess = (message) => {
 export const deleteAllCartFailure = (error) => {
     return {
         type: DELETE_ALL_CART_FAILURE,
+        payload: error
+    }
+}
+
+export const postOrderRequest = (data) => {
+    return {
+        type: POST_ORDER_REQUEST,
+        payload: data
+    }
+}
+
+export const postOrderSuccess = (order) => {
+    return {
+        type: POST_ORDER_SUCCESS,
+        payload: order
+    }
+}
+
+export const postOrderFailure = (error) => {
+    return {
+        type: POST_ORDER_FAILURE,
         payload: error
     }
 }

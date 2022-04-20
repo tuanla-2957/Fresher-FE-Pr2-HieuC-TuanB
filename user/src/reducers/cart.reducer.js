@@ -14,12 +14,16 @@ import {
     DELETE_ALL_CART_REQUEST,
     DELETE_ALL_CART_SUCCESS,
     DELETE_ALL_CART_FAILURE,
+    POST_ORDER_REQUEST,
+    POST_ORDER_SUCCESS,
+    POST_ORDER_FAILURE,
 } from '../actions/constant'
 
 const initialState = {
     carts: [],
     cart: {},
     cartInfo: [],
+    order: null,
     loading: true,
     error: null,
 };
@@ -42,7 +46,7 @@ const cartsReducer = (state = initialState, action) => {
         case ADD_CART_SUCCESS:
             state = {
                 ...state,
-                cartInfo: action.payload,
+                // cartInfo: action.payload,
                 loading: false,
             };
             break;
@@ -123,6 +127,28 @@ const cartsReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 carts: []
+            };
+            break;
+        case POST_ORDER_REQUEST:
+            state = {
+                ...state,
+                loading: true,
+            };
+            break;
+        case POST_ORDER_FAILURE:
+            state = {
+                ...state,
+                error: action.payload.error,
+                loading: false,
+            };
+            break;
+        case POST_ORDER_SUCCESS:
+            state = {
+                ...state,
+                loading: false,
+                order: action.payload,
+                cartInfo: state.carts,
+                carts: [],
             };
             break;
         default:
