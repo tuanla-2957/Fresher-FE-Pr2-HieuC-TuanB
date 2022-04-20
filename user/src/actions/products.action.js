@@ -1,4 +1,16 @@
-import { GET_PRODUCT_HOT_REQUEST, GET_PRODUCT_HOT_FAILURE, GET_PRODUCT_HOT_SUCCESS, GET_PRODUCT_REQUEST, GET_PRODUCT_FAILURE, GET_PRODUCT_SUCCESS, CHANGE_FILTER_PRODUCT, SELECT_PRODUCT_TAG } from './constant'
+import {
+    GET_PRODUCT_HOT_REQUEST,
+    GET_PRODUCT_HOT_FAILURE,
+    GET_PRODUCT_HOT_SUCCESS,
+    GET_PRODUCT_REQUEST,
+    GET_PRODUCT_FAILURE,
+    GET_PRODUCT_BY_ID_SUCCESS,
+    GET_PRODUCT_BY_ID_REQUEST,
+    GET_PRODUCT_BY_ID_FAILURE,
+    GET_PRODUCT_SUCCESS,
+    CHANGE_FILTER_PRODUCT,
+    SELECT_PRODUCT_TAG
+} from './constant'
 
 export const getProductHotRequest = (query) => {
     return {
@@ -41,6 +53,27 @@ export const getProductSuccess = (data) => {
         payload: data
     }
 }
+
+export const getProductByIdRequest = (query) => {
+    return {
+        type: GET_PRODUCT_BY_ID_REQUEST,
+        payload: query,
+    };
+};
+
+export const getProductByIdSuccess = (product) => {
+    return {
+        type: GET_PRODUCT_BY_ID_SUCCESS,
+        payload: product,
+    };
+};
+
+export const getProductByIdFailure = (error) => {
+    return {
+        type: GET_PRODUCT_BY_ID_FAILURE,
+        payload: error,
+    };
+};
 
 export const changeFilterProduct = (params) => {
     return {

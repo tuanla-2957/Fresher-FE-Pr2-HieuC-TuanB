@@ -12,8 +12,9 @@ import {
     DELETE_CART_REQUEST,
     DELETE_CART_SUCCESS,
     DELETE_ALL_CART_REQUEST,
-    DELETE_ALL_CART_SUCCESS
-} from '../actions/constant'
+    DELETE_ALL_CART_SUCCESS,
+    ADD_CART_SUCCESS
+} from '../actions/constant';
 import {
     addCartFailure,
     addCartSuccess,
@@ -106,6 +107,7 @@ export function* deleteAllCart({ payload }) {
 
 export function* onAddingToCart() {
     yield takeEvery(ADD_CART_REQUEST, addNewCart);
+    yield takeEvery(ADD_CART_SUCCESS, getCart);
 }
 
 export function* onGettingCart() {

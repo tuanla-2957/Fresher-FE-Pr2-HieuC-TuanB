@@ -44,7 +44,7 @@ const Product = ({ product }) => {
                     </div>
                 </div>
             </div>
-            <Link to='./product' className='card-wrapper'>
+            <Link to={`/product/${product._id}`} className='card-wrapper'>
 
             </Link>
         </div>

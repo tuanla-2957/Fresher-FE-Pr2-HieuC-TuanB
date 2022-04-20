@@ -1,0 +1,119 @@
+@import "../../../assets/scss/variable";
+@import "../../../assets/scss/mixins/mixins";
+
+.product-detail {
+  padding-top: 130px;
+  min-height: 100vh;
+
+  &-wrapper {
+    padding-bottom: 70px;
+  }
+
+  &__images {
+    @include flex($justify: start, $align: center, $wrap: nowrap);
+    padding-top: 70px;
+  }
+
+  .select-img {
+    flex: 1;
+    &__item {
+      li {
+        padding: 5px 10px;
+        display: inline-block;
+        width: 100%;
+
+        img {
+          opacity: 0.7;
+          border-radius: 5px;
+          transition: all 0.3s ease;
+        }
+
+        img:hover {
+          opacity: 1;
+        }
+      }
+
+      .tab-active img {
+        opacity: 1;
+        border: 1px solid $other-color;
+      }
+    }
+  }
+
+  &__image {
+    padding: 0px 5px;
+    flex: 4;
+    height: 100%;
+
+    .thumb {
+      @include flex($justify: start, $align: center, $wrap: nowrap);
+      overflow: hidden;
+      cursor: all-scroll;
+
+      img {
+        vertical-align: middle;
+        min-width: 100%;
+        border-radius: 5px;
+        transition: all 0.5s ease;
+      }
+
+      img:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  &__tag {
+    @include flex($justify: start, $align: center, $wrap: nowrap);
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__info {
+    padding-top: 70px;
+    height: 100%;
+    position: relative;
+  }
+
+  &__title {
+    font-size: $fs-5xl;
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+
+  &__price {
+    color: $other-color;
+    font-size: $fs-xl;
+    font-weight: 300;
+    margin-bottom: 10px;
+
+    .price__old {
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+    .price__new {
+      font-size: $fs-3xl;
+    }
+  }
+
+  &__text {
+    font-size: $fs-base;
+    color: $text-gray1;;
+    line-height: $lh-3xl;
+  }
+
+  &__action {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    .addCart {
+      @include flex($justify: start, $align: center, $wrap: nowrap);
+      margin-top: 30px;
+    }
+  }
+
+  .related {
+    padding-bottom: 50px;
+  }
+}
