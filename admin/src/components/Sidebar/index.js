@@ -38,6 +38,9 @@ export default function Sidebar() {
               {t("Order")}
             </NavLink>
           </li>
+          <li>
+            <NavLink to={"/admin"}>{t("Admin manager")}</NavLink>
+          </li>
         </ul>
         <div className='sidebar-footer'>
           <h3>{t("Profile")}</h3>
