@@ -1,8 +1,17 @@
-import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
+import {
+  all,
+  call,
+  put,
+  takeEvery,
+  takeLatest,
+  select,
+} from "redux-saga/effects";
 import {
   GET_PRODUCT_HOT_REQUEST,
   GET_PRODUCT_REQUEST,
   GET_PRODUCT_BY_ID_REQUEST,
+  GET_RELATED_PRODUCTS_REQUEST,
+  GET_PRODUCT_BY_ID_SUCCESS,
 } from "../actions/constant";
 import {
   getProductHotFailure,
@@ -11,8 +20,12 @@ import {
   getProductSuccess,
   getProductByIdSuccess,
   getProductByIdFailure,
+  getRelatedProductsSuccess,
+  getRelatedProductsFailure,
 } from "../actions/products.action";
 import axiosInstance from "../helper/axios";
+
+const getProduct = (state) => state.products;
 
 const fetchHotProducts = async () => {
   const response = await axiosInstance.get("/product/isHot");
@@ -38,6 +51,17 @@ const fetchProductById = async (productId) => {
     data: { product },
   } = await axiosInstance.get(`product/${productId}`);
   return product;
+};
+
+const fetchRelatedProducts = async (payload) => {
+  const tagParams = payload.map((type) => `&tag=${type}`).join("");
+  const response = await axiosInstance.get(`/product?${tagParams}`, {
+    params: {
+      page: 1,
+      perPage: 3,
+    },
+  });
+  return response.data.docs;
 };
 
 export function* getHotProducts() {
@@ -67,6 +91,17 @@ export function* getProductById({ payload }) {
   }
 }
 
+export function* getRelatedProducts({ payload }) {
+  const product = yield select(getProduct);
+  const { relatedTags, ...rest } = product;
+  try {
+    const relatedProducts = yield fetchRelatedProducts(relatedTags);
+    yield put(getRelatedProductsSuccess({ relatedProducts }));
+  } catch (error) {
+    yield put(getRelatedProductsFailure(error));
+  }
+}
+
 export function* onLoadingHotProducts() {
   yield takeEvery(GET_PRODUCT_HOT_REQUEST, getHotProducts);
 }
@@ -77,6 +112,11 @@ export function* onLoadingProducts() {
 
 export function* onLoadingProductById() {
   yield takeLatest(GET_PRODUCT_BY_ID_REQUEST, getProductById);
+  yield takeLatest(GET_PRODUCT_BY_ID_SUCCESS, getRelatedProducts);
+}
+
+export function* onLoadingRelatedProducts() {
+  yield takeLatest(GET_RELATED_PRODUCTS_REQUEST, getRelatedProducts);
 }
 
 export function* productsSaga() {
