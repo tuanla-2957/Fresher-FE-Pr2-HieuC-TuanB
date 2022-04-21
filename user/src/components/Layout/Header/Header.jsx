@@ -11,14 +11,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../../actions/auth.action";
 import Register from "../../Register/Register";
 import { useTranslation } from "react-i18next";
-import { getDataFromLocalStorage } from "../../../utils/helpers";
 import { Link, NavLink } from "react-router-dom";
+import { totalItemsInCart } from "../../../utils/helpers";
 
 const Header = () => {
   const { state: showLogin, set: setLogin } = useToggle();
   const { state: showRegister, set: setRegister } = useToggle();
-  const { isAuthenticate } = useSelector((state) => state.auth);
-  const user = getDataFromLocalStorage("user");
+  const { isAuthenticate, user } = useSelector((state) => state.auth);
+  const { carts } = useSelector((state) => state.carts);
+
   const dispatch = useDispatch();
 
   const [language, setLanguage] = useState("en");
@@ -106,7 +107,7 @@ const Header = () => {
               </div>
               <div className='header__info col-auto'>
                 <div className='account'>
-                  {user._id ? (
+                  {user && user._id ? (
                     <>
                       <span className='text__login'>Hi {user.userName}</span>
                       <ul className='account__option shadow'>
@@ -140,6 +141,7 @@ const Header = () => {
                 </div>
                 <Link className='header__cart' to={"cart"}>
                   <i className='fas fa-shopping-cart'></i>
+                  <span>{totalItemsInCart(carts)}</span>
                 </Link>
                 <div className='header__menu d-lg-none'>
                   <i className='fas fa-bars'></i>

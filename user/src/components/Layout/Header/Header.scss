@@ -95,7 +95,6 @@
 
   &__logo {
     padding: 0 30px;
-    
   }
 
   .account {
@@ -136,5 +135,18 @@
 
   &__cart {
     position: relative;
+
+    span {
+      @include flex($justify: center, $align: center);
+      position: absolute;
+      top: 0;
+      left: 90%;
+      height: 1.5rem;
+      width: 1.5rem;
+      background-color: $red-color;
+      border-radius: 50%;
+      color: $bg-white;
+      transform: translate(-50%, -50%);
+    }
   }
 }
