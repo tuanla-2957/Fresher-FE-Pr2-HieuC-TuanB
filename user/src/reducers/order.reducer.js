@@ -13,7 +13,7 @@ const initialState = {
   perPage: 5,
   totalOrders: 0,
   orders: null,
-  loading: true,
+  loading: null,
   error: null,
 };
 const productsReducer = (state = initialState, action) => {
