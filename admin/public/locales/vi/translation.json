@@ -58,5 +58,13 @@
   "6 month ago": "6 tháng trước",
   "1 year ago": "1 năm trước",
   "Month": "Tháng",
-  "Time": "Thời gian" 
+  "Time": "Thời gian",
+  "Phone Number": "Số điện thoại",
+  "UseName": "Tên tài khoản",
+  "First Name": "Họ",
+  "Last Name": "Tên",
+  "Add new Account": "Thêm tài khoản mới",
+  "Edit": "Sửa",
+  "not created yet": "Chưa tạo",
+  "Admin manager": "Quản lí admin"
 }

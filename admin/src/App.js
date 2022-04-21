@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
-
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Order from "./pages/Order";
@@ -12,6 +11,7 @@ import { isUserLoggedIn } from "./actions";
 
 import "./App.scss";
 import { useEffect } from "react";
+import AdminManager from "./pages/Admin";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +31,7 @@ function App() {
           <Route path='/products' element={<Products />} />
           <Route path='/products/:productId' element={<ProductDetails />} />
           <Route path='/order' element={<Order />} />
+          <Route path='/admin' element={<AdminManager />} />
           <Route path='/order/:orderId' element={<OrderDetails />} />
         </Route>
         <Route path='/login' element={<Login />} />
