@@ -1,0 +1,34 @@
+@import "../../../scss/variables.scss";
+@import "../../../scss/mixin.scss";
+
+.group {
+  @include flex($direction: column, $justify: center, $align: center);
+
+  label {
+    width: 100%;
+
+    input {
+      margin-top: 0.5rem;
+    }
+  }
+
+  label + label {
+    margin-top: 1rem;
+  }
+
+  .custom-file-input {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .tags {
+    width: 100%;
+    margin: 0.5rem 0;
+
+    .tag {
+      padding: 3px 7px;
+      background-color: $color-grey-light-2;
+      border-radius: 5px;
+    }
+  }
+}

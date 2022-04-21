@@ -174,7 +174,7 @@ const Products = (props) => {
       onOk={submitModal}
       onCancel={closeModal}
     >
-      <div className='addproduct-modal'>
+      <div className='group'>
         <input
           type='file'
           className='custom-file-input'
@@ -228,20 +228,20 @@ const Products = (props) => {
         <label>
           Add tag
           <div>
-            <input type='text' ref={tagRef} />
-            <button onClick={handleTagsInput}>Add </button>
+            <input type='text' className='form-control-sm w-50' ref={tagRef} />
+            <button onClick={handleTagsInput} class="btn btn-outline-primary btn-sm ms-3">Add </button>
           </div>
         </label>
 
-        <div style={{ marginTop: "4px" }}>
+        <div className="tags">
           {tags.map((tag) => (
-            <span className='tag'>
+            <span className='tag mx-1'>
               {tag}
-              <BsXSquare onClick={() => removeTag(tag)} />
+              <BsXSquare className="mb-1 ms-1" onClick={() => removeTag(tag)} />
             </span>
           ))}
         </div>
-        <h4>Photos</h4>
+        <h4 className="my-3 w-100">Photos</h4>
         <input
           type='file'
           className='custom-file-input'

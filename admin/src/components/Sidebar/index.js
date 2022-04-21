@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../actions";
 import useAvatar from "../../assets/images/userAvatar.jpg";
 import { useTranslation } from "react-i18next";
-import { FaHome, FaProductHunt, FaListOl, FaSignOutAlt } from "react-icons/fa";
+import { FaHome, FaProductHunt, FaListOl, FaSignOutAlt, FaUserCircle } from "react-icons/fa";
 
 import "./style.scss";
 
@@ -39,7 +39,10 @@ export default function Sidebar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/admin"}>{t("Admin manager")}</NavLink>
+            <NavLink to={"/admin"}>
+              <FaUserCircle />
+              {t("Admin manager")}
+            </NavLink>
           </li>
         </ul>
         <div className='sidebar-footer'>

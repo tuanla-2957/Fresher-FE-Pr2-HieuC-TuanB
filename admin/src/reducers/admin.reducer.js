@@ -2,6 +2,9 @@ import {
   GET_ADMIN_FAILURE,
   GET_ADMIN_REQUEST,
   GET_ADMIN_SUCCESS,
+  GET_ADMIN_BY_ID_FAILURE,
+  GET_ADMIN_BY_ID_REQUEST,
+  GET_ADMIN_BY_ID_SUCCESS,
   UPDATE_ADMIN_FAILURE,
   UPDATE_ADMIN_REQUEST,
   UPDATE_ADMIN_SUCCESS,
@@ -12,6 +15,7 @@ import {
 
 const initialState = {
   accounts: [],
+  account: null,
   selectedProduct: {},
   query: "",
   loading: true,
@@ -40,6 +44,26 @@ const adminReducer = (state = initialState, action) => {
         loading: false,
       };
       break;
+    case GET_ADMIN_BY_ID_REQUEST:
+      state = {
+        ...state,
+        loading: true
+      };
+      break;
+    case GET_ADMIN_BY_ID_FAILURE:
+      state = {
+        ...state,
+        error: action.payload.error,
+        loading: false,
+      };
+      break;
+    case GET_ADMIN_BY_ID_SUCCESS:
+      state = {
+        ...state,
+        account: action.payload,
+        loading: false,
+      };
+      break;
     case UPDATE_ADMIN_REQUEST:
       state = {
         ...state,
@@ -56,7 +80,7 @@ const adminReducer = (state = initialState, action) => {
     case UPDATE_ADMIN_SUCCESS:
       state = {
         ...state,
-        accounts: action.payload,
+        account: action.payload,
         loading: false,
       };
       break;
