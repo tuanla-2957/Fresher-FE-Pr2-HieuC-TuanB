@@ -14,7 +14,11 @@ const logIn = async (user) => {
   const response = await axiosInstance.post("/admin/login", {
     ...user,
   });
-  return { token: response.data.token, user: response.data.user };
+  return {
+    token: response.data.token,
+    user: response.data.user,
+    expiresIn: response.data.expiresIn.then,
+  };
 };
 
 export function* logInWithCredentials({ payload: { email, password } }) {
