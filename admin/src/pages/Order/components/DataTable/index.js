@@ -136,14 +136,6 @@ function App(props) {
       Header: (
         <div style={{ padding: "0 50px", boxSizing: "border-box" }}>
           <p>{t("Created At")}</p>
-          <select
-            onClick={(e) => console.log(e.target.value)}
-            style={{ border: "0.5px solid gray", borderRadius: "4px" }}
-          >
-            <option value={""}>{t("Sort by")}</option>
-            <option value={-1}>{t("Newest")}</option>
-            <option value={1}>{t("Oldest")}</option>
-          </select>
         </div>
       ),
       accessor: "createdAt",
