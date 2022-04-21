@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { all, call, put, takeEvery, select } from "redux-saga/effects";
 import {
   cancelOrderFailure,
@@ -42,6 +43,7 @@ export function* getCustomerOrder({ payload }) {
       page,
       ...rest,
     });
+
     yield put(getCustomerOrderSuccess({ orders: docs, totalDocs }));
   } catch (error) {
     yield put(getCustomerOrderFailure(error));
@@ -61,8 +63,10 @@ export function* cancelCustomerOrder({ payload }) {
   try {
     yield cancelOrder(payload);
     yield put(cancelOrderSuccess());
+    toast.success("Success cancel");
   } catch (error) {
     yield put(cancelOrderFailure(error));
+    toast.error("Something hapeen");
   }
 }
 

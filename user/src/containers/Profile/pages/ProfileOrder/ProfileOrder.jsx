@@ -17,7 +17,7 @@ export default function ProfileOrder() {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [orderIdCancel, setOrderIdCancel] = useState("");
-  const { orders, totalOrders, page, perPage } = useSelector(
+  const { orders, totalOrders, page, perPage, loading } = useSelector(
     (state) => state.orders
   );
 

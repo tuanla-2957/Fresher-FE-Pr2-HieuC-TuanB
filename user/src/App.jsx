@@ -15,9 +15,10 @@ import ProfileOrder from "./containers/Profile/pages/ProfileOrder/ProfileOrder";
 import ProfileAccount from "./containers/Profile/pages/ProfileAccount/ProfileAccount";
 import PrivateRoute from "./components/PrivateRoute";
 import ProfilePassword from "./containers/Profile/pages/ProfilePassword/ProfilePassword";
-import ShopCart from './containers/Shop-cart/ShopCart';
+import ShopCart from "./containers/Shop-cart/ShopCart";
 import ProductDetail from "./components/Product/ProductDetail/ProductDetail";
-import OrderResult from './containers/Order-result/OrderResult';
+import OrderResult from "./containers/Order-result/OrderResult";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <div className='App'>
+      <Toaster position='top-center' reverseOrder={false} />
       <Router>
         <Header />
         <Routes>

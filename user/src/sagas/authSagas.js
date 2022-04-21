@@ -28,6 +28,7 @@ import {
   logOut,
 } from "../actions/auth.action";
 import axiosInstance from "../helper/axios";
+import toast from "react-hot-toast";
 
 const getUser = (state) => state.auth;
 
@@ -67,10 +68,13 @@ export function* logInGenerator({ payload: infoUser }) {
   try {
     const user = yield logIn(userRegister ? userRegister : infoUser);
     yield put(loginSuccess(user));
+    toast.success("Loged in!");
     localStorage.setItem("token", user.token);
     localStorage.setItem("user", JSON.stringify(user.user));
   } catch (error) {
+    const { response } = error;
     yield put(loginFailure(error));
+    toast.error(`${response.data.message}`);
   }
 }
 
@@ -78,8 +82,12 @@ export function* registerGenerator({ payload: infoUser }) {
   try {
     const user = yield register(infoUser);
     yield put(registerSuccess(user));
+    toast.success("Success create account!, you are signin");
   } catch (error) {
+    const { response } = error;
+    console.log(response);
     yield put(registerFailure(error));
+    toast.error(`${response.data.error}`);
   }
 }
 
@@ -98,8 +106,10 @@ export function* updateUserInfomation({ payload }) {
     const { user } = yield updateUser(payload);
     localStorage.setItem("user", JSON.stringify(user));
     yield put(updateUserSuccess({ user }));
+    toast.success("Update profile successfull");
   } catch (error) {
     yield put(updateUserFailure(error));
+    toast.error("Some problem happen when updating, try again");
   }
 }
 
@@ -107,9 +117,11 @@ export function* changeUserPassword({ payload }) {
   try {
     yield changePassword(payload);
     yield put(changePasswordSuccess());
+    toast.success("Update Password successfull");
   } catch (error) {
     const errorMsg = error.response.data.message;
     yield put(changePasswordFailure({ error: errorMsg }));
+    toast.error(`${error.response.data.error}`);
   }
 }
 
