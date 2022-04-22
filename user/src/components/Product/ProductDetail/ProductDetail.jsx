@@ -19,7 +19,7 @@ const ProductDetail = () => {
   const dispatch = useDispatch();
   const { productId } = useParams();
   const { product } = useSelector((state) => state.products);
-  const { hotProducts } = useSelector((state) => state.products);
+  const { relatedProducts } = useSelector((state) => state.products);
   const { isAuthenticate } = useSelector((state) => state.auth);
   const [tab, setTab] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -31,8 +31,7 @@ const ProductDetail = () => {
   }
   useEffect(() => {
     dispatch(getProductByIdRequest(productId));
-    dispatch(getProductHotRequest({}));
-  }, []);
+  }, [productId]);
 
   const handleQuantity = (quantity) => {
     setQuantity(quantity);
@@ -132,7 +131,7 @@ const ProductDetail = () => {
           <div className='related'>
             <div className='product-detail__title'>{t("RELATED PRODUCTS")}</div>
             <div className='product-list row'>
-              {hotProducts?.map((product) => {
+              {relatedProducts?.map((product) => {
                 return (
                   <div className='col-12 col-md-4' key={product._id}>
                     <Product product={product} />
