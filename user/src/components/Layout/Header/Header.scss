@@ -74,7 +74,7 @@
   &-mid {
     &-wrapper {
       height: 80px;
-      @include flex($justify: space-between, $align: center);
+      @include flex($justify: space-between, $align: center, $wrap: nowrap);
     }
 
     i {
@@ -95,6 +95,10 @@
 
   &__logo {
     padding: 0 30px;
+
+    @include respond-to(small) {
+      padding: 0;
+    }
   }
 
   .account {
@@ -136,16 +140,17 @@
   &__cart {
     position: relative;
 
-    span {
+    .card__total {
       @include flex($justify: center, $align: center);
       position: absolute;
       top: 0;
-      left: 90%;
-      height: 1.5rem;
-      width: 1.5rem;
+      left: 85%;
+      height: 1.2rem;
+      width: 1.2rem;
       background-color: $red-color;
       border-radius: 50%;
       color: $bg-white;
+      font-size: $fs-xs;
       transform: translate(-50%, -50%);
     }
   }

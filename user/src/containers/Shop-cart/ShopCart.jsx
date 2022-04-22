@@ -21,7 +21,7 @@ const ShopCart = () => {
     }, [])
 
     useEffect(() => {
-        if (order) {
+        if (order && carts.length) {
             navigate("/order-result");
         }
     }, [order])

@@ -98,7 +98,7 @@
 
   &__text {
     font-size: $fs-base;
-    color: $text-gray1;;
+    color: $text-gray1;
     line-height: $lh-3xl;
   }
 
@@ -106,6 +106,10 @@
     position: absolute;
     bottom: 0;
     left: 0;
+
+    @include respond-to(medium) {
+      position: static;
+    }
 
     .addCart {
       @include flex($justify: start, $align: center, $wrap: nowrap);

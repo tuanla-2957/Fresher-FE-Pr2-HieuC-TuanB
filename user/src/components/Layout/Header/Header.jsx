@@ -90,7 +90,7 @@ const Header = () => {
         <div className='header-mid'>
           <div className='container'>
             <div className='header-mid-wrapper row'>
-              <div className='header__info col-auto'>
+              <div className='header__info col-auto d-none d-md-flex'>
                 <div className='header__contact'>
                   <i className='fas fa-phone'></i>
                 </div>
@@ -141,7 +141,7 @@ const Header = () => {
                 </div>
                 <Link className='header__cart' to={"cart"}>
                   <i className='fas fa-shopping-cart'></i>
-                  <span>{totalItemsInCart(carts)}</span>
+                  <span className={ carts.length ? "card__total" : "d-none"}>{totalItemsInCart(carts)}</span>
                 </Link>
                 <div className='header__menu d-lg-none'>
                   <i className='fas fa-bars'></i>

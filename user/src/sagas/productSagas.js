@@ -11,7 +11,7 @@ import {
   GET_PRODUCT_REQUEST,
   GET_PRODUCT_BY_ID_REQUEST,
   GET_RELATED_PRODUCTS_REQUEST,
-  GET_PRODUCT_BY_ID_SUCCESS,
+  GET_PRODUCT_BY_ID_SUCCESS
 } from "../actions/constant";
 import {
   getProductHotFailure,
@@ -32,8 +32,9 @@ const fetchHotProducts = async () => {
   return { products: response.data.products };
 };
 
-const fetchProducts = async (query) => {
-  const response = await axiosInstance.get("/product", {
+const fetchProducts = async (query, tags) => {
+  const tagParams = tags && tags.map((tag) => `&tag=${tag}`).join("");
+  const response = await axiosInstance.get(`/product?${tagParams}`, {
     params: query,
   });
   return {
@@ -74,8 +75,9 @@ export function* getHotProducts() {
 }
 
 export function* getProducts({ payload }) {
+  const { selectTags }  = yield select(getProduct);
   try {
-    const data = yield fetchProducts(payload);
+    const data = yield fetchProducts(payload, selectTags);
     yield put(getProductSuccess(data));
   } catch (error) {
     yield put(getProductFailure(error));

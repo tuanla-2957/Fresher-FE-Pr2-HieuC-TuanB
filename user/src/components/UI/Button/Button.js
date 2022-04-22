@@ -2,7 +2,9 @@ import React from 'react';
 import './Button.scss';
 import { Link } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { selectProductTag } from '../../../actions';
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -17,14 +19,25 @@ export const AddToCart = () => {
 };
 
 export const Tag = (props) => {
-    const { title, handleFilterTag } = props
-    const {  selectTags  } = useSelector((state) => state.products);
+    const { title } = props
+    const { selectTags } = useSelector((state) => state.products);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const handleFilterTag = (tag) => {
+        if (!window.location.href.includes('/product')) {
+            navigate('/product')
+        }
+        const isChecked = selectTags.includes(tag)
+        let tags;
+        if (isChecked) {
+            tags = selectTags.filter(item => item !== tag)
+        } else {
+            tags = [...selectTags, tag]
+        }
+        dispatch(selectProductTag(tags))
+    }
     return (
-        <button className={selectTags.includes(title) ? "button button-tag button-tag--active" : "button button-tag"} onClick={() => {
-            if (handleFilterTag) {
-                handleFilterTag(title)
-            }
-        }}>
+        <button className={selectTags.includes(title) ? "button button-tag button-tag--active" : "button button-tag"} onClick={() => handleFilterTag(title)}>
             <span>{title}</span>
         </button>
     );

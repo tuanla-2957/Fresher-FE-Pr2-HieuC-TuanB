@@ -11,17 +11,18 @@
   }
 
   &-wrapper {
-    // width: 100%;
-    // @include flex($justify: center, $align: start);
+    display: grid;
+    @include grid($column: 1fr 5fr);
+
+    @include respond-to(medium) {
+      @include grid($column: 1fr);
+    }
   }
 
   &__filter {
-    position: fixed;
-    left: 0;
-    top: 130px;
+    width: 100%;
     padding: 25px 20px 20px 10px;
-    width: 270px;
-    bottom: 400px;
+    min-width: 260px;
 
     .filter {
       padding: 25px 0;
@@ -36,13 +37,16 @@
       }
     }
 
-    .button-tag{
+    .button-tag {
       margin: 5px 5px;
     }
   }
 
   &__content {
     padding-top: 50px;
-    padding-left: 270px;
+
+    @include respond-to(medium) {
+      padding-left: 0;
+    }
   }
 }

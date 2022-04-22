@@ -9,6 +9,7 @@ import { getProductHotRequest } from '../../actions/products.action';
 import { getPostRequest } from '../../actions/posts.action';
 import { categories } from './data';
 import { useTranslation } from "react-i18next";
+import { Link } from 'react-router-dom';
 
 
 const Home = () => {
@@ -64,7 +65,7 @@ const Home = () => {
                     }
                 </div>
                 <div className='btn__see-more'>
-                    <button className='button button-base'>{t("SEE MORE HOT VOUCHERS")}</button>
+                    <Link to={'/product'} className='button button-base'>{t("SEE MORE HOT VOUCHERS")}</Link>
                 </div>
             </div>
             <div className='home__new'>
@@ -86,7 +87,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div className='btn__see-more'>
-                    <button className='button button-base'>{t("SEE MORE NEW POST")}</button>
+                    <Link to={'./post'} className='button button-base'>{t("SEE MORE NEW POST")}</Link>
                 </div>
             </div>
         </div>

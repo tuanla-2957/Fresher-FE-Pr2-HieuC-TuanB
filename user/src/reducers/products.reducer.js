@@ -18,20 +18,17 @@ const initialState = {
   products: [],
   product: null,
   hotProducts: [],
-  relatedProducts: [],
-  relatedTags: [],
   query: {
     page: 1,
     perPage: 6,
     name: null,
     minPrice: 0,
     maxPrice: 30000,
-    tag: [],
   },
   selectTags: [],
   pagination: {},
   loading: true,
-  error: null,
+  error: null
 };
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {

@@ -148,7 +148,6 @@ const cartsReducer = (state = initialState, action) => {
                 loading: false,
                 order: action.payload,
                 cartInfo: state.carts,
-                carts: [],
             };
             break;
         default:

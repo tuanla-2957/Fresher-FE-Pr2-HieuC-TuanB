@@ -19,7 +19,7 @@ const Post = () => {
         <div className='post-grid'>
           {posts.map((post) => (
             <div className='post-item'>
-              <img src={post.avatar} />
+              <img src={post.avatar} alt=''/>
               <div className='post-item__content'>
                 <h5>{post.title}</h5>
                 <Button variant='dark'>More</Button>

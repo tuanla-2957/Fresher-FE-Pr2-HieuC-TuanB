@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { getProductRequest, changeFilterProduct, selectProductTag } from '../../actions/products.action';
@@ -13,34 +13,26 @@ import TextField from "../../components/UI/Input/Input-group/TextField";
 
 const ProductPage = () => {
     const sortPrice = ["Price desc", "Price asc"];
-    const tags = ["germany", "error", "land", "ocean", "paccific", "japanse", "australia", "ocean", "travel", "belgium", "italia", "america", "island"]
+    const tags = ["germany", "euro", "land", "ocean", "paccific", "japanse", "australia", "ocean", "travel", "belgium", "italia", "america", "island"]
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const { products, pagination, query, selectTags } = useSelector((state) => state.products);
+    const [ranger, setRanger] = useState(
+        {
+            minPrice: Number(query.minPrice),
+            maxPrice: Number(query.maxPrice)
+        }
+    )
     useEffect(() => {
         dispatch(getProductRequest(
             query
         ));
         goToTop()
-    }, [query]);
+    }, [query, selectTags]);
 
     const handlePageChange = (newPage) => {
         dispatch(changeFilterProduct({
             page: Number(newPage)
-        }))
-    }
-
-    const handleFilterTag = (tag) => {
-        const isChecked = selectTags.includes(tag)
-        let tags;
-        if (isChecked) {
-            tags = selectTags.filter(item => item !== tag)
-        } else {
-            tags = [...selectTags, tag]
-        }
-        dispatch(selectProductTag(tags))
-        dispatch(changeFilterProduct({
-            tag: tags
         }))
     }
 
@@ -54,6 +46,7 @@ const ProductPage = () => {
             tag: []
         }))
         dispatch(selectProductTag([]))
+        window.location.reload()
     }
 
     const goToTop = () => { window.scrollTo({ top: 0, behavior: 'smooth', }); };
@@ -62,17 +55,14 @@ const ProductPage = () => {
         <div className='products'>
             <div className='container-fluid'>
                 <div className='products-wrapper'>
-                    <div className='products__filter d-none d-md-block'>
+                    <div className='products__filter'>
                         <div className="filter filter__price">
                             <div className="filter__title">{t('FILTER BY PRICE')}</div>
                             <div className="price__item">
                                 <div className="price__range my-1">
                                     <Formik
                                         initialValues={
-                                            {
-                                                minPrice: query.minPrice,
-                                                maxPrice: query.maxPrice
-                                            }
+                                            ranger
                                         }
                                         onSubmit={(value) => {
                                             dispatch(changeFilterProduct({
@@ -81,11 +71,18 @@ const ProductPage = () => {
                                             }))
                                         }}
                                     >
-                                        <Form>
-                                            <TextField label={t('Min Price')} name="minPrice" type="number" />
-                                            <TextField label={t('Max Price')} name="maxPrice" type="number" />
-                                            <button className="button button--success">{t('Filter')}</button>
-                                        </Form>
+                                        {({
+                                            resetForm
+                                        }) => {
+                                            return (
+                                                <Form>
+                                                    <TextField label={t('Min Price')} name="minPrice" type="number" />
+                                                    <TextField label={t('Max Price')} name="maxPrice" type="number" />
+                                                    <button className="button button--success">{t('Filter')}</button>
+                                                </Form>
+                                            )
+                                        }}
+
                                     </Formik>
                                 </div>
                             </div>
@@ -96,7 +93,8 @@ const ProductPage = () => {
                             <div className="tag__list">
                                 {tags.map((tag, index) => {
                                     return (
-                                        <Tag title={tag} key={index} handleFilterTag={handleFilterTag} />
+                                        <Tag title={tag} key={index}
+                                        />
                                     )
                                 })}
                             </div>
