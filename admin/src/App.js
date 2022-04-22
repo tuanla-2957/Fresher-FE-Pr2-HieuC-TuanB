@@ -7,7 +7,7 @@ import Order from "./pages/Order";
 import OrderDetails from "./pages/Order/components/OrderDetails";
 import ProductDetails from "./pages/Products/components/ProductDetail";
 import Login from "./pages/Login";
-import { isUserLoggedIn } from "./actions";
+import { isUserLoggedIn, logOut } from "./actions";
 
 import "./App.scss";
 import { useEffect } from "react";
@@ -16,13 +16,19 @@ import EditAdmin from "./pages/Admin/EditAdmin";
 
 function App() {
   const dispatch = useDispatch();
-  const { isAuthenticate } = useSelector((state) => state.auth);
+  const { isAuthenticate, expiresIn } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (!isAuthenticate) {
       dispatch(isUserLoggedIn());
     }
   }, [isAuthenticate]);
+
+  useEffect(() => {
+    if (expiresIn < new Date().getTime()) {
+      dispatch(logOut());
+    }
+  }, []);
 
   return (
     <div className='App'>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { api } from "../urlConfig";
 import store from "../store/index";
-import { LOGOUT_SUCCESS } from "../actions/constant";
+import { LOGOUT_SUCCESS, LOG_OUT } from "../actions/constant";
 
 const token = window.localStorage.getItem("token");
 
@@ -14,6 +14,9 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use((req) => {
   const { auth } = store.getState();
+  if (auth.expiresIn < new Date().getDate()) {
+    store.dispatch({ type: LOG_OUT });
+  }
   if (auth.token) {
     req.headers.Authorization = auth.token;
   }
@@ -28,7 +31,7 @@ axiosInstance.interceptors.response.use(
     const { status } = error.response;
     if (status === 500) {
       localStorage.clear();
-      store.dispatch({ type: LOGOUT_SUCCESS });
+      store.dispatch({ type: LOG_OUT });
     }
     return Promise.reject(error);
   }

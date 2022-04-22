@@ -8,6 +8,7 @@ import {
 const initialState = {
   token: null,
   user: {},
+  expiresIn: null,
   isAuthenticate: false,
   authenticating: false,
   loading: false,
@@ -28,6 +29,7 @@ const authReducer = (state = initialState, action) => {
         user: action.payload.user,
         token: action.payload.token,
         error: null,
+        expiresIn: action.payload.expiresIn,
         isAuthenticate: true,
         authenticating: false,
       };
