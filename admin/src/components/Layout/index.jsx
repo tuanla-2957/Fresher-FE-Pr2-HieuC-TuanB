@@ -10,12 +10,14 @@ export default function Layout(props) {
     <>
       <Header />
       {props.sidebar ? (
-        <Container>
-          <div className='layout-container'>
-            <Sidebar />
-            <div className='content'>{props.children}</div>
-          </div>
-        </Container>
+        <div className="layout">
+          <Container fluid>
+            <div className='layout-container'>
+              <Sidebar />
+              <div className='content'>{props.children}</div>
+            </div>
+          </Container>
+        </div>
       ) : (
         props.children
       )}

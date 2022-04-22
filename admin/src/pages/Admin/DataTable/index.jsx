@@ -187,7 +187,7 @@ function App(props) {
         createdAt: <FormatDate date={account.createdAt} />,
         update: (
           <Button className='table-btn--detail'>
-            <Link to={`/products/${account._id}`}>{t("Edit")}</Link>
+            <Link to={`/admin/${account._id}`}>{t("Edit")}</Link>
           </Button>
         ),
         delete: (

@@ -1,0 +1,14 @@
+@import '../../../../scss/variables.scss';
+
+.error__message {
+    position: absolute;
+    color: $color-red;
+    font-size: 0.75;
+    left: 0;
+    top: 100%;
+}
+
+.form__group {
+    position: relative;
+    text-align: left;
+}

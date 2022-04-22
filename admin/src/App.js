@@ -12,6 +12,7 @@ import { isUserLoggedIn } from "./actions";
 import "./App.scss";
 import { useEffect } from "react";
 import AdminManager from "./pages/Admin";
+import EditAdmin from "./pages/Admin/EditAdmin";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function App() {
           <Route path='/products/:productId' element={<ProductDetails />} />
           <Route path='/order' element={<Order />} />
           <Route path='/admin' element={<AdminManager />} />
+          <Route path='/admin/:userId' element={<EditAdmin />} />
           <Route path='/order/:orderId' element={<OrderDetails />} />
         </Route>
         <Route path='/login' element={<Login />} />
